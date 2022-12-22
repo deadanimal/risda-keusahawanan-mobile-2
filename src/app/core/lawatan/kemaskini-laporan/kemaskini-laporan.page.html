@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="chevron-back-outline" style="color: #986522;"></ion-icon>
+      </ion-button>
+      <ion-text color="warning">
+        <h1>
+          <strong class="ion-text-uppercase">
+            LAPORAN LAWATAN
+          </strong>
+        </h1>
+      </ion-text>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="form" (ngSubmit)="logForm()" enctype="multipart/form-data">
+      <ion-row>
+        <ion-col class="form-control">
+          <ion-item lines="none" style="border: none;">
+            <ion-label class="padding" position="stacked">NAMA USAHAWAN </ion-label>
+            <ion-input formControlName="namausahawan" readonly></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row> 
+        <ion-col class="form-control">
+          <ion-item lines="none" class="form-control" style="border: none;">
+            <ion-label class="padding" position="stacked">TARIKH </ion-label>
+            <ion-input type="text" formControlName="tarikh_lawatan" readonly></ion-input>
+          
+          </ion-item>
+        </ion-col>
+        <ion-col class="form-control">
+          <ion-item lines="none" class="form-control" style="border: none;">
+            <ion-label class="padding" position="stacked">MASA </ion-label>
+            <ion-input type="text" formControlName="masa_lawatan" readonly></ion-input>
+           
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="form-control">
+          <ion-item lines="none" style="border: none;">
+            <ion-label class="padding" position="stacked">JENIS LAWATAN </ion-label>
+            <ion-select formControlName="jenis_lawatan">
+              <ion-select-option value="janji temu">JANJI TEMU</ion-select-option>
+              <ion-select-option value="datang terus">DATANG TERUS</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="form-control">
+          <ion-item lines="none" style="border: none;">
+            <ion-label class="padding" position="stacked">TINDAKAN USAHAWAN </ion-label>
+            <ion-select formControlName="id_tindakan_lawatan">
+              <ion-select-option class="laporan" *ngFor="let tindakanLawatan of tindakanLawatan" [value]="tindakanLawatan.id" selected="tindakanLawatan.id == this.laporan.id_tindakan_lawatan">
+                {{tindakanLawatan.nama_tindakan_lawatan}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="form-control">
+          <ion-item lines="none" style="border: none;">
+            <ion-label class="padding" position="stacked">KOMEN KESELURUHAN </ion-label>
+            <ion-textarea rows="4" formControlName="komen" ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-label class="ion-text-center" style="padding-bottom: 0px;">GAMBAR</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px; ">
+        <ion-col class="form-control" style="display: flex; justify-content:center">
+          <label style="display: flex; justify-content:center">
+            <div style="display: flex; justify-content:center">
+              <img [src]="url" class="border-radius-md" width="40%" 
+                id="upload-Preview" style="border-radius: 10px;" />
+            </div>
+            <input id="upload-Image" accept="image/*" (change)="onSelectFile($event)" formControlName="gambar_lawatan" type="file"  style="display: none">
+          </label>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin:20px;">
+        <ion-col class="form-control">
+          
+          <ion-button color="dark" expand="block" [disabled]="form.invalid" type="submit">KEMASKINI LAPORAN</ion-button>
+          <ion-button color="warning" expand="block" (click)="download_laporan(laporan.lawatan_id)">CETAK LAPORAN</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+
+
+
+
+</ion-content>

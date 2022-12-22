@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="chevron-back-outline" style="color: #986522;"></ion-icon>
+      </ion-button>
+      <ion-text color="warning">
+        <h1>
+          <strong class="ion-text-uppercase">
+            KEMASKINI BULETIN
+          </strong>
+        </h1>
+      </ion-text>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <form [formGroup]="form" (ngSubmit)="logForm()" style="margin: 20px;">
+      <ion-row style="margin-bottom: 20px;">
+        <ion-col class="form-control">
+          <ion-label>TAJUK <span style="color: red;">*</span></ion-label>
+          <ion-input type="text" formControlName="tajuk"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-bottom: 20px;">
+        <ion-col class="form-control">
+          <ion-label> TARIKH <span style="color: red;">*</span></ion-label>
+          <!-- <ion-input type="date" formControlName="title"></ion-input> -->
+          <!-- <ion-input type="text" formControlName="title"></ion-input> -->
+          <ion-datetime presentation="date" displayFormat="DD/MM/YYYY" formControlName="tarikh" style="background-color: #f5f5f5;">
+          </ion-datetime>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-bottom: 20px;">
+        <ion-col class="form-control">
+          <ion-label>KETERANGAN LAIN <span style="color: red;">*</span></ion-label>
+          <ion-textarea rows="6" placeholder="" formControlName="keterangan_lain"></ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px;">
+        <ion-col class="form-control">
+          <ion-label>Link</ion-label>
+          <ion-textarea rows="2" placeholder="" formControlName="url"></ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px;">
+        <ion-col class="form-control">
+          <ion-label>STATUS <span style="color: red;">*</span></ion-label>
+          <ion-select formControlName="status">
+            <ion-select-option value="aktif">AKTIF</ion-select-option>
+            <ion-select-option value="tidak_aktif">TIDAK AKTIF</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-label class="ion-text-center" style="padding-bottom: 0px;">GAMBAR <span style="color: red;">*</span></ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px; ">
+        <ion-col class="form-control" style="display: flex; justify-content:center">
+          <label style="display: flex; justify-content:center">
+            <div style="display: flex; justify-content:center">
+              <img [src]="this.url" class="border-radius-md" width="40%" 
+                id="upload-Preview" style="border-radius: 10px;" />
+            </div>
+            <input id="upload-Image" type="file" formControlName="gambar_buletin" accept="image/*" (change)="onSelectFile($event)" style="display: none">
+          </label>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px;">
+        <ion-col class="form-control">
+          <ion-button color="dark" expand="block" type="submit" [disabled]="form.invalid" >KEMASKINI BULETIN</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+
+
+
+
+</ion-content>

@@ -1,0 +1,151 @@
+<ion-header>
+  <ion-toolbar style="height: 80px; display:flex; justify-content:center; align-items:center">
+
+    <ion-text style="display:flex; justify-content:center;">
+      <h5 style="color: #15493C;">
+        <!-- <strong class="ion-text-uppercase"> -->
+        Maklumat Produk
+        <!-- </strong> -->
+      </h5>
+    </ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div class="rectangle-280"></div>
+
+  <div class="bg-white">
+
+    <div class="gambar_produk" style="height: 30%; width:100%; background-image: url('{{katalog.gambar_url}}');">
+      <!-- <img src="assets/img/pic1.jpeg" alt="" > -->
+    </div>
+
+
+    <div style="display: flex; align-items:flex-start; width:100%; height:60%; overflow:scroll; margin:5%">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <h4 class="bold no-margin dark-green" style="text-transform: uppercase;">
+              {{katalog.nama_produk}}
+            </h4>
+
+            <ion-text color="warning" class="bold no-margin">
+              {{katalog.baki_stok}}
+            </ion-text>
+            <br>
+            <ion-text color="medium" class="bold no-margin">
+              <small>
+                Berat: {{katalog.berat_produk}}KG
+              </small>
+            </ion-text>
+          </ion-col>
+          <ion-col size="4">
+            <ion-text color="warning" class="bold no-margin">
+              <h5 class="bold no-margin">
+                RM {{katalog.harga_produk}}
+              </h5>
+            </ion-text>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-text class="bold no-margin">
+              <h6>Nama Usahawan</h6>
+            </ion-text>
+            <ion-text color="medium" class="no-margin">
+              <p class="nunito font-15" style=" text-align: justify; text-justify: inter-word;">
+                {{usahawan.name}}
+              </p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-text class="bold no-margin">
+              <h6>Nama Syarikat</h6>
+            </ion-text>
+            <ion-text color="medium" class="no-margin">
+              <p class="nunito font-15" style=" text-align: justify; text-justify: inter-word;">
+                {{usahawan.namasyarikat}}
+              </p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col>
+            <ion-text class="bold no-margin">
+              <h6>Keterangan</h6>
+            </ion-text>
+            <ion-text color="medium" class="no-margin">
+              <p class="nunito font-15" style=" text-align: justify; text-justify: inter-word;">
+                {{katalog.keterangan_produk}}
+              </p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-text class="bold no-margin">
+              <h6>Kandungan Produk</h6>
+            </ion-text>
+            <ion-text color="medium" class="no-margin">
+              <p class="nunito font-15" style=" text-align: justify; text-justify: inter-word;">
+                {{katalog.kandungan_produk}}
+              </p>
+            </ion-text>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </div>
+  <div style="height:15%; display: flex; align-items:center; justify-content:space-around">
+    <ion-button (click)="dismiss()" fill="default" class="ion-text-uppercase bold font-11" style="color: #D30F0F;">Batal</ion-button>
+    <ion-button (click)="pengesahan()" color="dark"  class="ion-text-uppercase bold font-11" >Sahkan</ion-button>
+  </div>
+
+  <!-- <div class="kmi nunitosans-extra-bold-te-papa-green-18px">Maklumat<br />Insentif</div>
+
+  <div class="body">
+    <div class="maklumatnunitosans-extra-bold-te-papa-green-18px">
+      <div class="kmi">Maklumat<br />Insentif</div>
+      <div class="x2000">Jumlah<br />Bantuan</div>
+    </div>
+
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div>1 of 2</div>
+      </ion-col>
+      <ion-col>
+        <div>2 of 2</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>1 of 3</div>
+      </ion-col>
+      <ion-col>
+        <div>2 of 3</div>
+      </ion-col>
+      <ion-col>
+        <div>3 of 3</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+
+
+
+
+</ion-content>

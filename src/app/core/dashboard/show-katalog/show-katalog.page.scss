@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans:600,800");
+
+.bold,
+h1 {
+    font-weight: bold;
+    font-family: "Nunito Sans";
+}
+
+.nunito{
+    font-family: 'Nunito Sans';
+}
+
+.font-15{
+    font-size: 15px;
+}
+
+.font-11{
+    font-size: 13px;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.no-margin {
+    margin: 0px !important;
+}
+
+.dark-green{
+    color: #15493C;
+}
+
+.rectangle-280 {
+    
+    background-color: #FF6600;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.bg-white {
+    background-color: white;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    min-width: 100%;
+    border-radius: 0px 0px 40px 40px;
+    flex-wrap: wrap;
+    // align-items: flex-start;
+    // padding: 20px;
+    // overflow: scroll;
+}
+
+.gambar_produk {
+    // border: 1px solid black;
+    background-image: url('/assets/img/pic2.jpeg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    
+    border-radius: 0px 0px 30px 30px;
+    
+}

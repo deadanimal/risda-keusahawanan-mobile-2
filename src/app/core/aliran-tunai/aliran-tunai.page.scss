@@ -1,0 +1,75 @@
+.no-padding {
+    padding: 0px !important;
+}
+
+.rectangle-280 {
+    background-color: #FF6600;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.bg-white {
+    background-color: white;
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    min-width: 100%;
+    border-radius: 0px 0px 25px 25px;
+}
+
+.lain.tab-selected{
+        background-color: rgb(218, 4, 4);
+        border-radius: 30px;
+        color: white;
+    
+}
+
+.tab-selected  {
+    background-color: #00a651;
+    border-radius: 30px;
+    color: white;
+}
+
+.tab {
+    margin-top: 10%;
+    border-bottom: none;
+    // background-color: #F1F1F1;
+}
+
+ion-tab-button {
+    background-color: #f1f1f1;
+    border-radius: 30px;
+    // padding-right: 2rem;
+}
+
+.content-box {
+    padding: 10px;
+    box-shadow: 0px 0px 3px 0px #acacac;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.bold,
+h1 {
+    font-weight: bold;
+    font-family: "Nunito Sans";
+}
+.no-padding {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.jumlah {
+    font-family: "Nunito Sans";
+}
+.tarikh {
+    font-family: "Nunito Sans";
+    font-size: 12px;
+    // color: #00a651;
+}
+
+ion-icon {
+    font-size: 12px;
+    font-weight: 900;
+}

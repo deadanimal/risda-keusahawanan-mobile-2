@@ -1,0 +1,55 @@
+
+
+.rectangle-280 {
+    background-color: #00a651;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.bg-white {
+    background-color: white;
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    min-width: 100%;
+    border-radius: 0px 0px 25px 25px;
+}
+
+.content-box {
+    padding: 10px;
+    box-shadow: 0px 5px 10px 1px #D3D3D3;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.bold,
+h1 {
+    font-weight: bold;
+    font-family: "Nunito Sans";
+}
+.no-padding {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.tarikh {
+    font-family: "Nunito Sans";
+    font-size: 12px;
+    // color: #00a651;
+}
+
+ion-icon {
+    font-size: 14px;
+    font-weight: bold;
+    color: #986522;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+  }

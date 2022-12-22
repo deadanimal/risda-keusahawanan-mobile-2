@@ -1,0 +1,66 @@
+.maklumat {
+    align-items: flex-start;
+    display: flex;
+    height: 31px;
+    min-width: 292px;
+  }
+  
+  .x2000 {
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-left: 134px;
+    min-height: 31px;
+    min-width: 72px;
+    text-align: right;
+  }
+  
+  @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:600,800");
+  
+  .kmi {
+    letter-spacing: 0;
+    line-height: 14px;
+    min-height: 31px;
+    min-width: 86px;
+    font-family: n;
+  }
+  
+  .bold, h1 {
+    font-weight: bold;
+    font-family: 'Nunito Sans';
+  }
+  .no-padding {
+    padding: 0px !important;
+  }
+  
+  .rectangle-280 {
+    background-color: #00a651;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+  
+  .bg-white {
+    background-color: white;
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    min-width: 100%;
+    border-radius: 0px 0px 40px 40px;
+    padding: 20px;
+    // overflow: scroll;
+  }
+  
+  .rectangle-41 {
+    height: 575px;
+    margin-bottom: -8px;
+    width: 383px;
+  }
+  
+  .content-box {
+    padding: 10px;
+    box-shadow: 0px 0px 3px 0px #acacac;
+    border-radius: 10px;
+    width: 100%;
+  }
+  

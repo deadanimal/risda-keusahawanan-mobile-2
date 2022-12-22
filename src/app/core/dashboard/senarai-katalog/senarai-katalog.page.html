@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="dashboard()">
+        <ion-icon name="chevron-back-outline" style="color: #986522;"></ion-icon>
+      </ion-button>
+      <ion-text color="warning">
+        <h1>
+          <strong class="ion-text-uppercase">
+            KATALOG
+          </strong>
+        </h1>
+      </ion-text>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let katalog of katalog" style="display: flex;
+        height: 250px;
+        flex-wrap: wrap;
+        align-content: stretch;">
+
+        <ion-card style="width: 100%; margin: 0px 10px 10px 10px !important" (click)="lihatKatalog(katalog)">
+          
+          <div style="height: 130px; overflow:hidden">
+            <img src="{{env+katalog.gambar_url}}" />
+          </div>
+          <ion-card-header style="padding: 20px 0px 0px 5px !important;">
+            <ion-card-subtitle>RM {{ katalog.harga_produk }}</ion-card-subtitle>
+            <h5 style="margin: 0px !important;">{{ katalog.nama_produk }}</h5>
+          </ion-card-header>
+          <!-- <ion-card-content style="padding: 0px !important;">
+           
+           
+          </ion-card-content> -->
+        </ion-card>
+
+      </ion-col>
+      <!-- <ion-col>
+        <div>2 of 2</div>
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+
+
+
+</ion-content>

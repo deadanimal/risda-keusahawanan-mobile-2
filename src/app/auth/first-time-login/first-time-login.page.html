@@ -1,0 +1,167 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Log Masuk Kali Pertama</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <div id="overlay"
+    style="background-image:url('assets/img/login-background.png'); background-position: center; background-repeat: no-repeat; background-size: cover; height:100%; position:absolute">
+
+  </div>
+  <!-- <div id="overlay" style="position: absolute;"></div> -->
+
+
+  <div *ngIf="profile_status == 0" style="z-index: 4; margin: 3%; margin-top:20%; align-items:center">
+
+    <div class="element-logo"></div>
+
+
+    <ion-text style="text-align: center;">
+      <h2 class="login-text">Log Masuk Kali Pertama</h2>
+    </ion-text>
+
+
+    <br><br>
+
+    <form action="" [formGroup]="form" (ngSubmit)="logForm()">
+      <ion-item style="border-radius: 50px;">
+        <ion-input type="text" email placeholder="Email" formControlName="email"
+          style="text-transform: none !important;"></ion-input>
+      </ion-item>
+      <br>
+
+      <ion-item style="border-radius: 50px;">
+        <ion-input type="password" [type]="getType()" formControlName="password" placeholder="Kata Laluan Baru"
+          style="text-transform: none !important;"></ion-input>
+        <a class="type-toggle" (click)="toggleTextPassword()">
+          <ion-icon class="show-option" color="dark" [hidden]="showPassword" name="eye-off-outline" style="zoom:1.5;">
+          </ion-icon>
+          <ion-icon class="hide-option" color="dark" [hidden]="!showPassword" name="eye-outline" style="zoom:1.5;">
+          </ion-icon>
+        </a>
+      </ion-item>
+      <br>
+      <ion-item style="border-radius: 50px;">
+        <ion-input type="password" [type]="getType2()" formControlName="confirm_password"
+          placeholder="Ulang Kata Laluan Baru" style="text-transform: none !important;"></ion-input>
+
+        <a class="type-toggle" (click)="toggleTextPassword2()">
+          <ion-icon class="show-option" color="dark" [hidden]="showConfirmPassword" name="eye-off-outline"
+            style="zoom:1.5;">
+          </ion-icon>
+          <ion-icon class="hide-option" color="dark" [hidden]="!showConfirmPassword" name="eye-outline"
+            style="zoom:1.5;">
+          </ion-icon>
+        </a>
+      </ion-item>
+
+      <br>
+
+      <div class="ion-margin ion-padding" *ngIf="form.hasError('numeric','password')"
+        style="border-radius:20px; opacity: 0.7; overflow:hidden; background-color:aliceblue">
+
+        <!-- <div id="overlay2" style="position: absolute;"></div> -->
+        <ion-text color="danger">
+          <span style="font-size: small;">
+            Kata laluan perlu mempunyai sekurang-kurangnya
+            <br>
+            8 Aksara
+            <br>
+            1 Simbol
+            <br>
+            1 nombor
+            <br>
+            1 Huruf besar
+          </span>
+        </ion-text>
+
+      </div>
+
+
+      <div style="display: flex; justify-content:center">
+        <ion-button type="submit" expand="block" color="dark" shape="round" [disabled]="form.invalid"
+          style="width: 60%;">Log masuk</ion-button>
+
+      </div>
+    </form>
+
+  </div>
+
+
+  <div *ngIf="profile_status == 2" style="z-index: 4; margin: 3%; margin-top:20%; align-items:center">
+
+    <div class="element-logo"></div>
+
+
+    <ion-text style="text-align: center;">
+      <h2>Reset Kata Laluan</h2>
+    </ion-text>
+
+
+    <br><br><br>
+
+    <form action="" [formGroup]="form2" (ngSubmit)="logForm2()">
+      <ion-item style="border-radius: 50px;">
+        <ion-input type="password" [type]="getType()" formControlName="password" placeholder="Kata Laluan Baru"
+          style="text-transform: none !important;"></ion-input>
+        <a class="type-toggle" (click)="toggleTextPassword()">
+          <ion-icon class="show-option" color="dark" [hidden]="showPassword" name="eye-off-outline" style="zoom:1.5;">
+          </ion-icon>
+          <ion-icon class="hide-option" color="dark" [hidden]="!showPassword" name="eye-outline" style="zoom:1.5;">
+          </ion-icon>
+        </a>
+      </ion-item>
+      <br>
+      <ion-item style="border-radius: 50px;">
+        <!-- <ion-input type="password" formControlName="confirm_password" placeholder="Ulang Kata Laluan Baru"
+          style="text-transform: none !important;"></ion-input> -->
+
+        <ion-input type="password" [type]="getType2()" formControlName="confirm_password"
+          placeholder="Ulang Kata Laluan Baru" style="text-transform: none !important;"></ion-input>
+
+        <a class="type-toggle" (click)="toggleTextPassword2()">
+          <ion-icon class="show-option" color="dark" [hidden]="showConfirmPassword" name="eye-off-outline"
+            style="zoom:1.5;">
+          </ion-icon>
+          <ion-icon class="hide-option" color="dark" [hidden]="!showConfirmPassword" name="eye-outline"
+            style="zoom:1.5;">
+          </ion-icon>
+        </a>
+
+      </ion-item>
+      <div class="ion-margin ion-padding" *ngIf="form2.hasError('numeric','password')"
+        style="border-radius:20px; opacity: 0.7; overflow:hidden; background-color:aliceblue">
+
+        <!-- <div id="overlay2" style="position: absolute;"></div> -->
+        <ion-text color="danger">
+          <span style="font-size: small;">
+            Kata laluan perlu mempunyai sekurang-kurangnya
+            <br>
+            8 Aksara
+            <br>
+            1 Simbol
+            <br>
+            1 nombor
+            <br>
+            1 Huruf besar
+          </span>
+        </ion-text>
+
+      </div>
+      <br>
+
+
+      <br>
+
+      <div style="display: flex; justify-content:center">
+        <ion-button type="submit" expand="block" color="dark" shape="round" [disabled]="form2.invalid"
+          style="width: 60%;">Log masuk</ion-button>
+      </div>
+    </form>
+
+  </div>
+
+
+</ion-content>

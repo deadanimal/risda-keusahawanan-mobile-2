@@ -1,0 +1,94 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<!-- /Users/ismailibrahim/Desktop/Risda/myApp/src/app/login -->
+<ion-content>
+
+  <div id="overlay"
+    style="background-image:url('assets/img/login-background.png'); background-position: center; background-repeat: no-repeat; background-size: cover; height:100%; position:absolute">
+
+  </div>
+  <!-- <div id="overlay" style="position: absolute;"></div> -->
+
+
+  <div style="z-index: 4; margin: 3%; margin-top:20%; align-items:center">
+
+    <div class="element-logo"></div>
+
+
+    <ion-text class="selamat-datang">
+      <h1 class="selamat-datang nunitosans-extra-bold-green-haze-36px">Selamat Datang</h1>
+    </ion-text>
+
+    <ion-text style="text-align: center;">
+      <h2 class="login-text">Log Masuk</h2>
+    </ion-text>
+    <br>
+
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <ion-item style="border-radius: 50px;">
+        <ion-input type="text" inputmode="numeric" placeholder="No Kad Pengenalan" name="nric" formControlName='no_kp'
+          style="text-transform: none !important;" (keypress)="numericOnly($event)"></ion-input>
+      </ion-item>
+      <br>
+
+      <ion-item style="border-radius: 50px;">
+        <ion-input type="password" [type]="getType()" placeholder="Kata Laluan" name="password"
+          formControlName='password' style="text-transform: none !important;">
+        </ion-input>
+
+        <a class="type-toggle" (click)="toggleTextPassword()">
+          <ion-icon class="show-option" color="dark" [hidden]="showPassword" name="eye-off-outline" style="zoom:1.5;">
+          </ion-icon>
+          <ion-icon class="hide-option" color="dark" [hidden]="!showPassword" name="eye-outline" style="zoom:1.5;">
+          </ion-icon>
+        </a>
+      </ion-item>
+
+     
+      <br>
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6">
+            <div style="display: flex; align-items:center">
+              <!-- <a class="forget-password nunitosans-extra-bold-green-haze-12px"> -->
+
+              <ion-checkbox color="dark" (ionChange)="addValue($event)" [checked]="checked"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <span class="lupa">
+                  Ingat saya
+                </span>
+              </ion-label>
+
+              <!-- </a> -->
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div style="display: flex; justify-content:flex-end;  align-items:center">
+              <a class="forget-password nunitosans-extra-bold-green-haze-12px" (click)="forget_password()"
+                style="text-decoration: none;">
+                <span class="lupa"> Lupa Kata Laluan?</span>
+              </a>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+      <br>
+
+      <div style="display: flex; justify-content:center">
+        <ion-button expand="block" color="dark" type="submit" shape="round" [disabled]="form.invalid" style="width:60%">Log masuk
+        </ion-button>
+      </div>
+    </form>
+
+
+  </div>
+
+
+</ion-content>

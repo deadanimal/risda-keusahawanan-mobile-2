@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dashboard()">
+        <ion-icon name="chevron-back-outline" style="color: #986522"></ion-icon>
+      </ion-button>
+      <!-- <ion-back-button defaultHref="/dashboard"></ion-back-button> -->
+    </ion-buttons>
+    <ion-text color="warning">
+      <h1>
+        <strong class="ion-text-uppercase"> Insentif </strong>
+      </h1>
+    </ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="rectangle-280"></div>
+
+  <div class="bg-white">
+    <ion-grid style="margin-top: 1%; margin-left: 5%; margin-right: 5%">
+      <ion-row style="margin-bottom: 10px">
+        <ion-col>
+          <h5 class="bold">Maklumat<br />Insentif</h5>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <h5 class="bold">Jumlah<br />Bantuan</h5>
+        </ion-col>
+      </ion-row>
+      <ion-grid style="max-height: 70%; overflow: scroll">
+        <ion-row *ngFor="let insentif of insentif" style="padding-bottom: 10px">
+          <ion-col>
+            <div class="content-box bold" style="font-family: 'Nunito Sans'">
+              <ion-grid style="padding: 0%">
+                <ion-row style="padding: 0%">
+                  <ion-col size="8">
+                    <ion-text style="font-size: 15px">
+                      {{insentif.nama_insentif}}
+                    </ion-text>
+                    <br />
+                    <ion-text color="warning" style="font-size: 13px">
+                      Tahun Terima: {{insentif.tahun_terima_insentif}}
+                    </ion-text>
+                  </ion-col>
+                  <ion-col size="4" style="padding: 0%">
+                    <div
+                      class="content-box"
+                      style="
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        background-color: #ededed;
+                        text-align: center;
+                      "
+                    >
+                      <ion-text color="dark">
+                        RM {{insentif.nilai_insentif | number:'1.2-2':'en-US'}}
+                      </ion-text>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-grid>
+  </div>
+
+  <!-- <div class="kmi nunitosans-extra-bold-te-papa-green-18px">Maklumat<br />Insentif</div>
+
+  <div class="body">
+    <div class="maklumatnunitosans-extra-bold-te-papa-green-18px">
+      <div class="kmi">Maklumat<br />Insentif</div>
+      <div class="x2000">Jumlah<br />Bantuan</div>
+    </div>
+
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div>1 of 2</div>
+      </ion-col>
+      <ion-col>
+        <div>2 of 2</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>1 of 3</div>
+      </ion-col>
+      <ion-col>
+        <div>2 of 3</div>
+      </ion-col>
+      <ion-col>
+        <div>3 of 3</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+</ion-content>

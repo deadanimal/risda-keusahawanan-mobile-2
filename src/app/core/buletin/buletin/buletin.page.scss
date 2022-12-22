@@ -1,0 +1,59 @@
+.no-padding {
+    padding: 0px !important;
+}
+
+.rectangle-280 {
+    background-color: #00a651;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.bg-white {
+    background-color: white;
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    min-width: 100%;
+    border-radius: 0px 0px 25px 25px;
+}
+
+.bold,
+h1 {
+    font-weight: bold;
+    font-family: "Nunito Sans";
+}
+.no-padding {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.rectangle-279 {
+    // background-color: #EDEDED;
+    border-radius: 12px;
+    height: fit-content;
+    width: 100%;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+.nunito{
+    font-family: "Nunito Sans";
+}
+
+.dot {
+    height: 30px;
+    width: 30px;
+    background-color: #00a651;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5%;
+}
+
+.dot2 {
+    height: 30px;
+    width: 30px;
+    background-color: #d30f0f;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5%;
+}

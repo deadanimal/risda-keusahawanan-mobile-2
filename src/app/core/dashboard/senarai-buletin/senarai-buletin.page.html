@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="dashboard()">
+        <ion-icon name="chevron-back-outline" style="color: #986522;"></ion-icon>
+      </ion-button>
+      <ion-text color="warning">
+        <h1>
+          <strong class="ion-text-uppercase">
+            BULETIN
+          </strong>
+        </h1>
+      </ion-text>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let buletin of buletin" style="width: 90%;" (click)="lihatBuletin(buletin)">
+    <div style="height: 150px; overflow:hidden">
+      <img src="{{buletin.gambar_buletin}}"/>
+    </div>
+    
+    <ion-card-header style="padding: 20px 10px 10px 10px !important; ">
+      
+      <ion-card-subtitle>{{ buletin.tarikh | date: 'dd/MM/YYYY' }}</ion-card-subtitle>
+      <h5 style="margin: 0px !important;">{{ buletin.tajuk }}</h5>
+      
+    </ion-card-header>
+    <!-- <ion-card-content style="padding: 0px !important;">
+      <ion-card-subtitle>{{ buletin.tarikh }}</ion-card-subtitle>
+      <h5 style="margin: 0px !important;">{{ buletin.tajuk }}</h5>
+    </ion-card-content> -->
+  </ion-card>
+
+
+
+</ion-content>

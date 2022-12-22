@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="chevron-back-outline" style="color: #986522;"></ion-icon>
+      </ion-button>
+      <ion-text color="warning">
+        <h1>
+          <strong class="ion-text-uppercase">
+            TARIKH LAWATAN
+          </strong>
+        </h1>
+      </ion-text>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+  
+
+  <ion-grid>
+    <form [formGroup]="form" (ngSubmit)="logForm()" enctype="multipart/form-data">
+      <!-- <ion-row>
+        <ion-col class="form-control">
+          <ion-item lines="none" style="border: none;">
+            <ion-label class="padding" position="stacked"  mode="ios">NAMA USAHAWAN</ion-label>
+            <ion-select formControlName="id_pengguna">
+              <ion-select-option *ngFor="let usahawan of usahawan" value="{{usahawan.id_pengguna}}">
+                {{usahawan.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
+
+      <ion-row>
+        <ion-col class="form-control">
+          <ion-item lines="none" style="border: none;" (click)="openSenaraiUsahawan()">
+            <ion-label class="padding" position="stacked" mode="ios">NAMA USAHAWAN <span style="color: red;">*</span>
+            </ion-label>
+
+            <div *ngIf="tempID == null" style="width: 100%;">
+              <ion-input type="text" placeholder="Pilih Usahawan" style="width: 100%"></ion-input>
+            </div>
+            <div *ngFor="let usahawan of usahawan" style="width: 100%;">
+
+              <div *ngIf="usahawan.id_pengguna == tempID; then content else other_content" style="width: 100%;">
+              </div>
+              <ng-template #content style="width: 100%;">
+                <ion-input type="text" formControlName="id_pengguna" placeholder="Pilih Usahawan" hidden></ion-input>
+                <ion-input readonly type="text" value="{{usahawan.name}}" placeholder="Pilih Usahawan" style="width: 100%;"></ion-input>
+              </ng-template>
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 15%;"> 
+        <ion-col class="form-control">
+          <ion-item lines="none" class="form-control" style="border: none;">
+            <ion-label class="padding" position="stacked"  mode="ios">TARIKH </ion-label>
+            <!-- <ion-input type="date" formControlName="title"></ion-input> -->
+            <ion-datetime presentation="date" displayFormat="YYYY-MM-DD" formControlName="tarikh_lawatan" style="background-color: #f5f5f5; width:100%">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col class="form-control">
+          <ion-item lines="none" class="form-control" style="border: none;">
+            <ion-label class="padding" position="stacked"  mode="ios">MASA </ion-label>
+            <!-- <ion-input type="date" formControlName="title"></ion-input> -->
+            <ion-datetime displayFormat="HH:mm" presentation="time" formControlName="masa_lawatan" style="background-color: #f5f5f5;">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px;">
+        <ion-col class="form-control">
+          <!-- (click)="openmodal()" -->
+          <ion-button color="success" expand="block" type="submit" [disabled]="form.invalid" >TETAP TARIKH LAWATAN</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+
+
+
+
+</ion-content>

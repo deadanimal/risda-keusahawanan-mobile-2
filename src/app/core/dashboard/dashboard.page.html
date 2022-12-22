@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="open_noti()">
+
+        <!-- no message -->
+        <img *ngIf="noti == false" src="assets/new-iconv2/black-bell-notification.png" alt="" height="30px">
+
+        <!-- has message -->
+        <img *ngIf="noti == true" src="assets/new-iconv2/black-bell-notification-(1).png" alt="" height="30px">
+
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="usahawan != null">
+    <div class="box ion-padding ion-margin">
+      {{usahawan.namausahawan}}
+    </div>
+
+    <div class="box ion-padding ion-margin">
+      {{usahawan.p_t.keterangan}}
+    </div>
+
+    <div class="box ion-padding ion-margin">
+      {{jenis_perniagaan}}
+      <span *ngIf="usahawan.perniagaan.kluster != null">
+        {{usahawan.perniagaan.kluster.nama_kluster}}
+      </span>
+    </div>
+  </div>
+
+  <div *ngIf="pegawai != null">
+    <div class="box ion-padding ion-margin">
+      {{pegawai.nama}}
+    </div>
+
+    <div class="box ion-padding ion-margin">
+      {{pegawai.p_t.keterangan}}
+    </div>
+
+    <div class="box ion-padding ion-margin" style="text-transform: uppercase;">
+      {{pegawai.user.peranan.nama_peranan}}
+    </div>
+  </div>
+
+
+  <div class="ion-margin-top ion-padding bold" style="width: 100%; padding-bottom:0px !important">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          Katalog
+        </ion-col>
+        <ion-col style="display: flex; justify-content:flex-end">
+          <a (click)="SenaraiKatalog()">
+            <!-- <img src="assets/icon/arrow-down--(greeny)-icon.png" alt="" height="20px"> -->
+            <ion-icon name="chevron-down-outline" style="zoom:1.5; color:#986522"></ion-icon>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="scrolling-wrapper">
+    <div *ngFor="let katalog of katalog" class="card" (click)="lihatKatalog(katalog)">
+      <ion-card class="no-padding" style="width: 150px;">
+
+        <ion-card-content class="no-padding" style="width: 150px;">
+          <div style="background-image: url('{{env+katalog.gambar_url}}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        border-radius: 20px 20px 20px 20px;
+        height:150px;
+        color:white;
+        display:flex;
+        justify-content:flex-end;
+        ">
+
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+  </div>
+
+  <div class="ion-margin-top ion-padding bold" style="width: 100%; padding-bottom:0px !important">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          Berita Terkini
+        </ion-col>
+        <ion-col style="display: flex; justify-content:flex-end">
+          <a (click)="SenaraiBuletin()">
+            <!-- <img src="assets/icon/arrow-down--(greeny)-icon.png" alt="" height="20px"> -->
+            <ion-icon name="chevron-down-outline" style="zoom:1.5; color:#986522"></ion-icon>
+
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="ion-padding" style="margin-right: 30px;">
+    <ion-card *ngFor="let buletin of buletin" style="width: 100%; margin-bottom:20px !important">
+      <!-- <img src="{{buletin.gambar_buletin}}" /> -->
+      <div style="height: 130px; overflow:hidden">
+        <img src="{{buletin.gambar_buletin}}" />
+      </div>
+      <ion-card-header>
+        <div>
+          <h4 class="no-margin ion-text-uppercase">{{ buletin.tajuk }}</h4>
+        </div>
+      </ion-card-header>
+      <ion-card-content>
+
+        <div>
+          <p class="no-margin" style="text-align: justify;
+        text-justify: inter-word;">
+            {{ buletin.keterangan_lain.substring(0, [100]) }}
+            <span *ngIf="buletin.keterangan_lain.length > 100">
+              ...
+            </span>
+
+          </p>
+        </div>
+        <div style="display:flex; justify-content: flex-end;">
+          <ion-button color="warning" size="small" (click)="lihatBuletin(buletin)">
+            Selanjutnya
+          </ion-button>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+
+  </div>
+
+</ion-content>

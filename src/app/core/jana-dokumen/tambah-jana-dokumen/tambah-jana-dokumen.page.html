@@ -1,0 +1,250 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="chevron-back-outline" style="color: #986522"></ion-icon>
+      </ion-button>
+      <ion-text color="warning">
+        <h2>
+          <strong class="ion-text-uppercase"> DOKUMEN PERNIAGAAN </strong>
+        </h2>
+      </ion-text>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="form1" (ngSubmit)="logForm()" style="margin: 20px">
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <h5 class="form-header">Maklumat Pelanggan</h5>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label>TAJUK <span style="color: red">*</span></ion-label>
+          <ion-input type="text" formControlName="tajuk"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label
+            >NAMA PELANGGAN <span style="color: red">*</span></ion-label
+          >
+          <ion-input type="text" formControlName="nama_pelanggan"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label
+            >NO RUMAH/ LOT/ PINTU <span style="color: red">*</span></ion-label
+          >
+          <ion-input type="text" formControlName="alamat1"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label>NAMA JALAN <span style="color: red">*</span></ion-label>
+          <ion-input type="text" formControlName="alamat2"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label
+            >KAMPUNG/ TAMAN <span style="color: red">*</span></ion-label
+          >
+          <ion-input type="text" formControlName="alamat3"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label>NEGERI <span style="color: red">*</span></ion-label>
+          <!-- <ion-input type="text" formControlName="U_Negeri_ID"></ion-input> -->
+          <ion-select
+            formControlName="U_Negeri_ID"
+            (ionChange)="getDaerah($event)"
+          >
+            <ng-container *ngFor="let negeri of negeri">
+              <ion-select-option
+                *ngIf="negeri.Negeri !=='IBU PEJABAT'"
+                value="{{negeri.U_Negeri_ID}}"
+              >
+                {{negeri.Negeri}}</ion-select-option
+              >
+            </ng-container>
+          </ion-select>
+        </ion-col>
+        <ion-col class="form-control">
+          <ion-label>DAERAH <span style="color: red">*</span></ion-label>
+          <!-- <ion-input type="text" formControlName="U_Daerah_ID">
+          </ion-input> -->
+          <ion-select formControlName="U_Daerah_ID">
+            <ion-select-option
+              *ngFor="let daerah of daerah"
+              value="{{daerah.U_Daerah_ID}}"
+              >{{daerah.Daerah}}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label>POSKOD <span style="color: red">*</span></ion-label>
+          <ion-input type="number" formControlName="poskod"></ion-input>
+        </ion-col>
+        <ion-col class="form-control">
+          <ion-label>NO. TELEFON <span style="color: red">*</span></ion-label>
+          <ion-input
+            type="text"
+            inputmode="numeric"
+            formControlName="no_telefon"
+            (keypress)="numericOnly($event)"
+            placeholder="Eg: 0342564022"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label>NO. FAKS </ion-label>
+          <ion-input
+            type="text"
+            inputmode="numeric"
+            formControlName="no_fax"
+            (keypress)="numericOnly($event)"
+            placeholder="Eg: 0342564022"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <h5 class="form-header">
+            Maklumat Pembelian
+            <ion-icon
+              name="alert-circle-outline"
+              style="font-size: large; margin-top: 2px; color: blue"
+              (click)="openPopOver($event)"
+            ></ion-icon>
+          </h5>
+        </ion-col>
+      </ion-row>
+      <div formArrayName="produk">
+        <div
+          *ngFor="let produk of getProdukArray.controls; let i=index"
+          [formGroupName]="i"
+        >
+          <ion-row style="margin-bottom: 10px">
+            <ion-col class="form-control">
+              <!-- <ion-item lines="none" style="border: none;"> -->
+              <ion-label position="stacked"
+                >NAMA PRODUK <span style="color: red">*</span></ion-label
+              >
+              <!-- <ion-input formControlName="id_katalog"></ion-input> -->
+              <ion-select formControlName="id_katalog">
+                <ion-select-option
+                  *ngFor="let katalog of katalog"
+                  value="{{katalog.id}}"
+                  >{{katalog.nama_produk}}
+                </ion-select-option>
+                <!-- <ion-select-option value="draft">Draft</ion-select-option> -->
+              </ion-select>
+              <!-- </ion-item> -->
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="margin-bottom: 20px">
+            <ion-col class="form-control">
+              <!-- <ion-item lines="none" style="border: none;"> -->
+              <ion-label position="stacked"
+                >KUANTITI <span style="color: red">*</span></ion-label
+              >
+              <ion-input
+                type="number"
+                formControlName="stok_dijual"
+              ></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="margin-bottom: 20px">
+            <ion-col class="form-control">
+              <div
+                style="width: 100%; display: flex; justify-content: flex-end"
+              >
+                <div
+                  *ngIf="i != 0"
+                  class="ion-text-center"
+                  (click)="deleteProduk(i)"
+                >
+                  <img
+                    src="assets/new-iconv2/hapus.png"
+                    alt=""
+                    height="30"
+                    width="30"
+                  />
+                  <br />
+                </div>
+
+                <div
+                  *ngIf="i == (productLength-1)"
+                  class="ion-text-center"
+                  (click)="addProduk()"
+                >
+                  <img
+                    src="assets/new-iconv2/Tambah.png"
+                    alt=""
+                    height="30"
+                    width="30"
+                  />
+                  <br />
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label>DISKAUN (TOLAK KOS KESELURUHAN) </ion-label>
+          <ion-input type="number" formControlName="diskaun"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label>KOS PENGHANTARAN (TAMBAH KOS KESELURUHAN)</ion-label>
+          <ion-input
+            type="number"
+            formControlName="kos_penghantaran"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-label
+            >CUKAI/SST/GST/LAIN-LAIN (TAMBAH KOS KESELURUHAN)</ion-label
+          >
+          <ion-input type="number" formControlName="cukai_sst"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 20px">
+        <ion-col class="form-control">
+          <ion-button
+            color="success"
+            expand="block"
+            type="submit"
+            [disabled]="form1.invalid"
+            >TAMBAH</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

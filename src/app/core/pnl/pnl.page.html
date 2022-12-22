@@ -1,0 +1,162 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="dashboard()" >
+        <ion-icon name="chevron-back-outline" style="color: #986522;"></ion-icon>
+      </ion-button>
+      <!-- <ion-back-button defaultHref="/dashboard"></ion-back-button> -->
+    </ion-buttons>
+    <ion-text color="warning">
+      <h3>
+        <strong class="ion-text-uppercase bold">
+          PENYATA UNTUNG/RUGI
+        </strong>
+      </h3>
+    </ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <!-- <div class="rectangle-280"></div> -->
+
+  <div class="bg-white">
+
+    <div style="width: 100%; height:23%;">
+
+      <form [formGroup]="form" action="" (ngSubmit)="logform()">
+
+        <ion-card>
+          <ion-card-content class="no-padding test">
+
+            <ion-item>
+              <ion-label>Bulan</ion-label>
+              <ion-select formControlName="bulan" >
+                <ion-select-option value="1">Januari</ion-select-option>
+                <ion-select-option value="2">Februari</ion-select-option>
+                <ion-select-option value="3">Mac</ion-select-option>
+                <ion-select-option value="4">April</ion-select-option>
+                <ion-select-option value="5">Mei</ion-select-option>
+                <ion-select-option value="6">Jun</ion-select-option>
+                <ion-select-option value="7">Julai</ion-select-option>
+                <ion-select-option value="8">Ogos</ion-select-option>
+                <ion-select-option value="9">September</ion-select-option>
+                <ion-select-option value="10">Oktober</ion-select-option>
+                <ion-select-option value="11">November</ion-select-option>
+                <ion-select-option value="12">Disember</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-content class="no-padding test">
+          
+            <ion-item>
+              <ion-label>Tahun</ion-label>
+              <ion-select formControlName="tahun" >
+                <ion-select-option *ngFor="let year of listYear" value="{{year}}">{{year}}</ion-select-option>
+
+              </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <div style="width: 100%; display:flex; justify-content:flex-end">
+   
+          <ion-button size="small" color="warning" [disabled]="form.invalid" type="submit">Cari
+          </ion-button>
+        </div>
+
+
+
+      </form>
+
+
+    </div>
+
+    <div style="width: 100%; height:77%; overflow:scroll; margin-top:25px">
+
+
+      <div *ngFor="let p of pnl">
+
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="6">
+              <div  class="rectangle-1" style="height: 100px;">
+                
+                <div style="height: 50%;">
+                  <h6 class="bold">HASIL JUALAN</h6>
+                </div>
+                <div style="height: 30%;">
+                  <span class="no-margin">RM {{p.hasil_jualan | number:'1.2-2':'en-US'}}</span>
+                </div>
+                
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div  class="rectangle-1" style="height: 100px;">
+
+                <div style="height: 50%;">
+                  <h6 class="bold">KOS JUALAN (COGS)</h6>
+                </div>
+                <div style="height: 30%;">
+                  <span class="no-margin">RM  {{p.kos_jualan | number:'1.2-2':'en-US'}}</span>
+                </div>
+                
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <div  class="rectangle-1" style="height: 100px;">
+                
+                <div style="height: 50%;">
+                  <h6 class="bold">OPEX</h6>
+                </div>
+                <div style="height: 30%;">
+                  <span class="no-margin">RM {{p.opex | number:'1.2-2':'en-US'}}</span>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div  class="rectangle-1" style="height: 100px;">
+                
+                
+                <div style="height: 50%;">
+                  <h6 class="bold">UNTUNG/RUGI KASAR</h6>
+                </div>
+                <div style="height: 30%;">
+                  <span class="no-margin">RM {{p.untung_rugi_kasar | number:'1.2-2':'en-US'}} </span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div style="width: 100%; display:flex; justify-content:flex-end">
+                <ion-button size="small" color="warning"  (click)="printPdfCustom()">PDF</ion-button>
+                <ion-button size="small" color="warning" (click)="printExcelCustom()">Excel
+                </ion-button>
+              </div>
+            </ion-col>
+           
+          </ion-row>
+        </ion-grid>
+       
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+</ion-content>

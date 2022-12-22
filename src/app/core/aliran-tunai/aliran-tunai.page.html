@@ -1,0 +1,188 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="dashboard()" >
+        <ion-icon name="chevron-back-outline" style="color: #986522;"></ion-icon>
+      </ion-button>
+      <ion-text color="warning">
+        <h1>
+          <strong class="ion-text-uppercase">
+            ALIRAN TUNAI
+          </strong>
+        </h1>
+      </ion-text>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+    <ion-tabs>
+      <ion-tab-bar slot="top" class="tab">
+        <ion-tab-button tab="/tunai-masuk"  style="height:30px; max-width:40%">
+          <ion-label style="width: 80%; ">
+            <div>
+              Tunai Masuk
+            </div>
+            <!-- <ion-button round=true>Tunai Masuk</ion-button> -->
+          </ion-label>
+          <!-- <ion-icon name="musical-note"></ion-icon> -->
+        </ion-tab-button>
+        <ion-tab-button tab="/tunai-keluar" class="lain" style="height:30px; max-width:40%">
+          <ion-label>
+            Tunai Keluar
+          </ion-label>
+          <!-- <ion-icon name="game-controller"></ion-icon> -->
+        </ion-tab-button>
+
+      </ion-tab-bar>
+
+      <ion-tab tab="/tunai-masuk">
+        <ion-content fullscreen>
+          <div class="rectangle-280"></div>
+
+          <div class="bg-white" style="display: flex; flex-wrap:wrap">
+            <ion-grid style="margin-left:5%; margin-right:5%;">
+              <ion-row style="margin-bottom: 10px;">
+                <ion-col>
+                  <h5 class="bold"> Maklumat Aliran</h5>
+                </ion-col>
+                <ion-col class="ion-text-end">
+                  <h5 class="bold">Jumlah</h5>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <div style="height: 65%; width:100%; overflow: scroll;">
+              <ion-grid style="margin-left:5%; margin-right:5%;">
+                <ion-row *ngFor="let tunai_masuk of tunai_masuk" style="padding-bottom: 10px;" >
+                  <ion-col>
+                    <div class="content-box bold" style="font-family: 'Nunito Sans';" (click)="kemaskiniTunaiMasuk( tunai_masuk )">
+                      <ion-grid style="padding: 0%;">
+                        <ion-row style="padding: 0%;">
+                          <ion-col size="7">
+                            <ion-text>
+                              <h6 class="bold no-padding">
+                                {{tunai_masuk.kategori_aliran}}
+                              </h6>
+                            </ion-text>
+                            <ion-text color="warning">
+                              {{tunai_masuk.keterangan_aliran}}
+                            </ion-text>
+                          </ion-col>
+                          <ion-col size="5" style="padding: 0%;">
+                            <div class="content-box"
+                              style="height: 100%; display:flex; align-items:center; background-color:#EDEDED; display:flex; justify-content:center">
+                              <ion-text color="success" class="ion-text-center">
+                                <p class="jumlah no-padding"> RM {{tunai_masuk.jumlah_aliran | number:'1.2-2':'en-US'}}</p>
+
+                                <p class="tarikh no-padding">{{tunai_masuk.tarikh_aliran  | date:'dd/MM/yyyy'}}</p>
+                              </ion-text>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div
+              style="width:100%; height:25%; display:flex; justify-content:flex-end; align-items:flex-end; border-radius: 0px 0px 25px 25px; ">
+              <div class="ion-padding ion-margin ion-text-center" (click)="tambahTunaiMasuk()">
+                <img src="assets/new-iconv2/Tambah.png" alt="" height="50" width="50">
+                <br>
+
+                <ion-text class="bold" color="dark">
+                  <ion-icon name="add"></ion-icon>
+                  <span style="font-size: 12px; font-weight: 900;"><strong> TAMBAH </strong></span>
+                </ion-text>
+              </div>
+
+            </div>
+          </div>
+
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab tab="/tunai-keluar">
+        <ion-content fullscreen>
+          <div class="rectangle-280"></div>
+
+          <div class="bg-white" style="display: flex; flex-wrap:wrap">
+            <ion-grid style="margin-left:5%; margin-right:5%;">
+              <ion-row style="margin-bottom: 10px;">
+                <ion-col>
+                  <h5 class="bold"> Maklumat Aliran</h5>
+                </ion-col>
+                <ion-col class="ion-text-end">
+                  <h5 class="bold">Jumlah</h5>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <div style="height: 65%; width:100%; overflow: scroll;">
+              <ion-grid style="margin-left:5%; margin-right:5%;">
+                <ion-row *ngFor="let tunai_keluar of tunai_keluar" style="padding-bottom: 10px;">
+                  <ion-col>
+                    <div class="content-box bold" style="font-family: 'Nunito Sans';" (click)="kemaskiniTunaiKeluar( tunai_keluar )">
+                      <ion-grid style="padding: 0%;">
+                        <ion-row style="padding: 0%;">
+                          <ion-col size="8">
+                            <ion-text>
+                              <h6 class="bold no-padding ion-text-uppercase">
+                                {{tunai_keluar.kategori_aliran}}
+                              </h6>
+                            </ion-text>
+                            <ion-text color="warning">
+                              {{tunai_keluar.keterangan_aliran}}
+                            </ion-text>
+                          </ion-col>
+                          <ion-col size="4" style="padding: 0%;">
+                            <div class="content-box"
+                              style="height: 100%; display:flex; align-items:center; background-color:#EDEDED; display:flex; justify-content:center">
+                              <ion-text color="danger" class="ion-text-center">
+                                <p class="jumlah no-padding"> RM {{tunai_keluar.jumlah_aliran | number:'1.2-2':'en-US'}}</p>
+
+                                <p class="tarikh no-padding">{{tunai_keluar.tarikh_aliran | date:'dd/MM/yyyy'}}</p>
+                              </ion-text>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div
+              style="width:100%; height:25%; display:flex; justify-content:flex-end; align-items:flex-end; border-radius: 0px 0px 25px 25px; ">
+              <div class="ion-padding ion-margin ion-text-center" (click)="tambahTunaiKeluar()">
+                <img src="assets/new-iconv2/Tambah.png" alt="" height="50" width="50">
+                <br>
+
+                <ion-text class="bold" color="dark">
+                  <ion-icon name="add"></ion-icon>
+                  <span style="font-size: 12px; font-weight: 900;"><strong> TAMBAH </strong></span>
+                </ion-text>
+              </div>
+
+            </div>
+          </div>
+
+        </ion-content>
+      </ion-tab>
+
+
+
+
+    </ion-tabs>
+
+  </div>
+
+
+
+
+
+</ion-content>

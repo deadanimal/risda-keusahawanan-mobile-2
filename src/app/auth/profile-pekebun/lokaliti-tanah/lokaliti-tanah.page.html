@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar style="display:flex; justify-content:center; align-items:center">
+
+    
+
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="chevron-back-outline" style="color: #986522;"></ion-icon>
+      </ion-button>
+      <ion-text style="display:flex; justify-content:center;">
+        <h5 style="color: #15493C;">
+          <!-- <strong class="ion-text-uppercase"> -->
+          MAKLUMAT TANAH {{ index }}
+          <!-- </strong> -->
+        </h5>
+      </ion-text>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <form [formGroup]="form" class="ion-padding form-control">
+
+    <ion-row class="ion-margin-bottom" style="background-color: #FF6600; color:white">
+      <ion-col>
+        <strong>Maklumat Tanah {{ index }}</strong>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label> NO.GERAN</ion-label>
+        <ion-input formControlName="No_Geran" disabled></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label> NEGERI</ion-label>
+        <!-- <ion-input formControlName="U_Negeri_ID" ></ion-input> -->
+        <ion-select formControlName="U_Negeri_ID" disabled>
+          <ion-select-option *ngFor="let negeri of negeri" value="{{negeri.U_Negeri_ID}}">{{negeri.Negeri}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label> DAERAH</ion-label>
+        <!-- <ion-input formControlName="U_Daerah_ID"></ion-input> -->
+        <ion-select formControlName="U_Daerah_ID" disabled>
+          <ion-select-option *ngFor="let daerah of daerah" value="{{daerah.U_Daerah_ID}}">{{daerah.Daerah}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-label> MUKIM</ion-label>
+        <!-- <ion-input formControlName="U_Mukim_ID"></ion-input> -->
+        <ion-select formControlName="U_Mukim_ID" disabled>
+          <ion-select-option *ngFor="let mukim of mukim" value="{{mukim.U_Mukim_ID}}">{{mukim.Mukim}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label> PARLIMEN</ion-label>
+        <!-- <ion-input formControlName="U_Parlimen_ID"></ion-input> -->
+        <ion-select formControlName="U_Parlimen_ID" disabled>
+          <ion-select-option *ngFor="let parlimen of parlimen" value="{{parlimen.U_Parlimen_ID}}">{{parlimen.Parlimen}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-label> DUN</ion-label>
+        <!-- <ion-input formControlName="U_Dun_ID"></ion-input> -->
+
+        <ion-select formControlName="U_Dun_ID" disabled>
+          <ion-select-option *ngFor="let dun of dun" value="{{dun.U_Dun_ID}}">{{dun.Dun}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label> KAMPUNG</ion-label>
+        <!-- <ion-input formControlName="U_Kampung_ID"></ion-input> -->
+
+        <ion-select formControlName="U_Kampung_ID" disabled>
+          <ion-select-option *ngFor="let kampung of kampung" value="{{kampung.U_Kampung_ID}}">{{kampung.Kampung}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label> SEKSYEN</ion-label>
+        <!-- <ion-input formControlName="U_Seksyen_ID"></ion-input> -->
+
+        <ion-select formControlName="U_Seksyen_ID" disabled>
+                <ion-select-option *ngFor = "let seksyen of seksyen" value="{{seksyen.U_Seksyen_ID}}">{{seksyen.Seksyen}}</ion-select-option>
+              </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label> KELUARAN HEKTAR</ion-label>
+        <ion-input formControlName="Luas_Lot" disabled></ion-input>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-margin-bottom ion-margin-top" style="background-color: #FF6600; color:white">
+      <ion-col >
+        <strong>Maklumat Tanaman</strong>
+      </ion-col>
+    </ion-row>
+
+    <div formArrayName="Tanaman">
+
+      <div *ngFor="let tanaman of tanamans(ti).controls; let bi=index">
+
+        <div [formGroupName]="bi">
+
+          <ion-row>
+            <ion-col>
+              <ion-label> JENIS TANAMAN {{bi +1}}</ion-label>
+              <ion-input formControlName="Jenis_Tanaman" disabled></ion-input>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+
+    <br>
+
+
+  </form>
+
+</ion-content>
