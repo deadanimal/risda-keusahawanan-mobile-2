@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Reds Delivery</string>
+    <string name="title_activity_main">Reds Delivery</string>
+    <string name="package_name">reds.reds.delivery</string>
+    <string name="custom_url_scheme">reds.reds.delivery</string>
+</resources>

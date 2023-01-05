@@ -1,9 +1,9 @@
 
-/android
+
 node_modules
-/platforms
+platforms
 /plugins
-/www
+www
 
 
 

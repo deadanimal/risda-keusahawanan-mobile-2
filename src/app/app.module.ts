@@ -19,9 +19,14 @@ import { NativeGeocoder } from "@ionic-native/native-geocoder/ngx";
 import { IonicStorageModule } from "@ionic/storage-angular";
 import { InAppBrowser } from "@awesome-cordova-plugins/in-app-browser/ngx";
 import { DocumentViewer } from "@awesome-cordova-plugins/document-viewer/ngx";
-
+import { StorageService } from "./services/roles.service";
+import { FileTransfer } from "@ionic-native/file-transfer/ngx";
+import { DownloadDirective } from "./download.directive";
+import { HTTP } from "@ionic-native/http/ngx";
+import { LocalNotifications } from "@awesome-cordova-plugins/local-notifications/ngx";
+import { FileOpener } from "@awesome-cordova-plugins/file-opener/ngx";
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DownloadDirective],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -37,6 +42,8 @@ import { DocumentViewer } from "@awesome-cordova-plugins/document-viewer/ngx";
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    HTTP,
+    LocalNotifications,
 
     {
       provide: RouteReuseStrategy,
@@ -51,6 +58,9 @@ import { DocumentViewer } from "@awesome-cordova-plugins/document-viewer/ngx";
       useClass: IonicRouteStrategy,
     },
     DocumentViewer,
+    StorageService,
+    FileTransfer,
+    FileOpener,
   ],
   bootstrap: [AppComponent],
 })

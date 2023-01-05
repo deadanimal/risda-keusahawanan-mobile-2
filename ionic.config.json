@@ -2,7 +2,7 @@
   "name": "myApp",
   "integrations": {
     "capacitor": {
-      "enabled": false
+      "enabled": true
     },
     "cordova": {}
   },

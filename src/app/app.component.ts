@@ -11,6 +11,10 @@ import {
 import { PegawaiService } from "./services/pegawai/pegawai.service";
 import { UsahawanService } from "./services/usahawan/usahawan.service";
 import { NotifikasiService } from "./services/notifikasi/notifikasi.service";
+import { HTTP } from "@ionic-native/http/ngx";
+import { Platform } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -84,9 +88,15 @@ export class AppComponent {
     private router: Router,
     private pegawaiService: PegawaiService,
     private usahawanService: UsahawanService,
-    private notiService: NotifikasiService
+    private notiService: NotifikasiService,
+    private httpSSL: HTTP,
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar
   ) {
     this.router.events.subscribe((e: RouterEvent) => {});
+
+    this.httpSSL.setServerTrustMode("nocheck");
   }
 
   ngOnInit() {
@@ -173,5 +183,23 @@ export class AppComponent {
   openPage(url) {
     console.log("routing to ");
     this.router.navigate([url]);
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+
+      this.platform.ready().then(() => {
+        this.httpSSL
+          .setServerTrustMode("pinned") //<=== Add this function
+          .then(() => {
+            console.log("Congratulaions, you have set up SSL Pinning.");
+          })
+          .catch(() => {
+            console.error("Opss, SSL pinning failed.");
+          });
+      });
+    });
   }
 }

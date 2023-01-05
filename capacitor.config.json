@@ -1,6 +1,14 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "myApp",
-	"webDir": "www",
-	"bundledWebRuntime": false
+  "appId": "reds.reds.delivery",
+  "appName": "Reds Delivery",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "allowNavigation": []
+  },
+  "server": {
+    "androidScheme": "http",
+    "cleartext": true,
+    "allowNavigation": ["https://reds-training.risda.gov.my/*"]
+  }
 }

@@ -29,11 +29,17 @@
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/certificates",
+                "output": "certificates"
               }
             ],
             "styles": [
-              "src/theme/variables.scss", 
-              "src/global.scss","node_modules/sweetalert2/src/sweetalert2.scss"
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": ["node_modules/sweetalert2/dist/sweetalert2.js"],
             "aot": false,
@@ -125,10 +131,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         },
         "e2e": {

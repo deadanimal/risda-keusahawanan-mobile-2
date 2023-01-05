@@ -6,15 +6,14 @@
         close
       </ion-button>
     </ion-buttons>
-    <ion-title>Download success</ion-title>
+    <ion-title>Download File</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- the file has been downloaded to your device please check your downloads for the file -->
-
   <div class="center">
-    <img src="assets/download.svg" alt="" height="250" width="250" /><br />
+    <img src="assets/download.svg" height="200" width="200" alt="" />
+    <br />
+    <ion-button (click)="downloadFile()">Download file</ion-button>
   </div>
-  <p class="message">The file has been saved succesfully to your downloads</p>
 </ion-content>

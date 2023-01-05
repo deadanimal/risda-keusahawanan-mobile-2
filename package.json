@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npx jetifier && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -24,9 +24,11 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@awesome-cordova-plugins/core": "^5.39.1",
     "@awesome-cordova-plugins/document-viewer": "^6.2.0",
-    "@awesome-cordova-plugins/file-transfer": "^5.40.0",
+    "@awesome-cordova-plugins/file-opener": "^6.2.0",
+    "@awesome-cordova-plugins/file-transfer": "^6.2.0",
     "@awesome-cordova-plugins/geolocation": "^5.37.3",
     "@awesome-cordova-plugins/in-app-browser": "^5.40.0",
+    "@awesome-cordova-plugins/local-notifications": "^6.2.0",
     "@awesome-cordova-plugins/native-storage": "^5.39.1",
     "@capacitor/android": "^3.4.1",
     "@capacitor/app": "1.0.3",
@@ -36,7 +38,9 @@
     "@capacitor/status-bar": "1.0.3",
     "@ionic-native/camera": "^5.36.0",
     "@ionic-native/core": "^5.36.0",
-    "@ionic-native/file": "^4.3.3",
+    "@ionic-native/document-viewer": "^5.36.0",
+    "@ionic-native/file": "^5.36.0",
+    "@ionic-native/file-opener": "^5.36.0",
     "@ionic-native/file-transfer": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
     "@ionic-native/http": "^5.36.0",
@@ -50,15 +54,21 @@
     "@ionic/storage-angular": "^3.0.6",
     "@types/file-saver": "^2.0.5",
     "ajv": "^6.12.6",
+    "capacitor-resources": "^2.0.5",
     "cordova-plugin-advanced-http": "3.2.2",
     "cordova-plugin-document-viewer": "^1.0.0",
+    "cordova-plugin-file": "6.0.2",
     "cordova-plugin-file-opener2": "^3.0.5",
+    "cordova-plugin-local-notification": "^0.9.0-beta.2",
+    "cordova-plugin-whitelist": "^1.3.5",
     "cordova-res": "^0.15.4",
     "file-saver": "^2.0.5",
     "ionic": "^5.4.16",
     "ionic-tooltips": "^4.0.0-beta.0",
     "moment": "^2.29.1",
+    "ng2-pdf-viewer": "^9.1.3",
     "ng2-search-filter": "^0.5.1",
+    "ngx-filesaver": "^14.0.0",
     "rxjs": "~6.6.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.3.4",
@@ -90,8 +100,7 @@
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
-    "cordova-plugin-file": "^5.0.0",
-    "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
+    "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-inappbrowser": "^5.0.0",
@@ -107,6 +116,7 @@
     "eslint-plugin-prefer-arrow": "1.2.2",
     "jasmine-core": "~3.8.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "jetifier": "^2.0.0",
     "karma": "^6.3.10",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
@@ -129,9 +139,7 @@
       "cordova-plugin-ionic-keyboard": {},
       "im.ltdev.cordova.UserAgent": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-advanced-http": {
-        "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1"
-      },
+      "cordova-plugin-advanced-http": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-nativegeocoder": {
         "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service"
@@ -142,7 +150,6 @@
       "cordova-plugin-whitelist": {}
     },
     "platforms": [
-      "android",
       "ios"
     ]
   }

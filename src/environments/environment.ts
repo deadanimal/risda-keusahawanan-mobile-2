@@ -11,10 +11,8 @@ export const environment = {
 
   // baseUrl:"https://reds.risda.gov.my/"
 
-  baseUrl:"https://reds-training.risda.gov.my/"
-  
+  baseUrl: "https://reds-training.risda.gov.my/",
 };
-
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -835,4 +835,8 @@ export class ProfilePage implements OnInit {
     //   this.router.navigateByUrl("dashboard");
     // }
   }
+
+  go(path: string) {
+    this.router.navigate([path]);
+  }
 }

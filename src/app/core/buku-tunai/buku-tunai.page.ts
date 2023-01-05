@@ -5,12 +5,23 @@ import { environment } from "src/environments/environment";
 import { InAppBrowser } from "@awesome-cordova-plugins/in-app-browser/ngx";
 import { Router } from "@angular/router";
 import { FileDownloadModalComponent } from "src/app/shared/file-download-modal/file-download-modal.component";
-import { ModalController, Platform } from "@ionic/angular";
+import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import {
   DocumentViewer,
   DocumentViewerOptions,
 } from "@awesome-cordova-plugins/document-viewer/ngx";
+import {
+  FileTransfer,
+  FileUploadOptions,
+  FileTransferObject,
+} from "@ionic-native/file-transfer/ngx";
 import { platform } from "os";
+import { File } from "@ionic-native/file/ngx";
+import { HTTP } from "@ionic-native/http/ngx";
+import { HttpClient } from "@angular/common/http";
+import { saveAs } from "file-saver";
+import { url } from "inspector";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-buku-tunai",
@@ -23,15 +34,15 @@ export class BukuTunaiPage implements OnInit {
   year: any;
 
   month: any;
-
+  blob: any;
   filteredYear: any;
   filteredMonth: any;
   filtered: boolean = false;
   options: DocumentViewerOptions = {
     title: "My PDF",
   };
-  private form: FormGroup;
-
+  form: FormGroup;
+  private downloadedFile;
   listYear = [];
   listMonth = [
     { value: "1", name: "January" },
@@ -51,7 +62,7 @@ export class BukuTunaiPage implements OnInit {
 
   selectMonthList = this.listMonth;
   selectYearList = this.listYear;
-
+  fileTransfer: FileTransferObject = this.transfer.create();
   constructor(
     private formBuilder: FormBuilder,
     private pdfExcelService: PdfExcelService,
@@ -59,7 +70,11 @@ export class BukuTunaiPage implements OnInit {
     private router: Router,
     private modalController: ModalController,
     private document: DocumentViewer,
-    private platform: Platform
+    private platform: Platform,
+    private transfer: FileTransfer,
+    private file: File,
+    private http: HttpClient,
+    private loadingController: LoadingController
   ) {
     this.form = this.formBuilder.group({
       id: [""],
@@ -90,38 +105,29 @@ export class BukuTunaiPage implements OnInit {
   printExcelCustom() {
     this.form.value.id = this.user_id;
     console.log(this.form.value);
-
+    this.presentLoading();
     this.pdfExcelService.bukuTunaiExcel(this.form.value).subscribe((res) => {
       console.log("res", res);
 
       let url = environment.baseUrl + "storage/" + res;
-      this.document.viewDocument(url, "application/pdf", this.options);
+      this.loadingController.dismiss();
 
-      console.log(url);
-      // window.open(url, "_blank");
-      // const browser = this.iab.create(url, "_system");
+      this.presentModal(url, this.form.value.bulan, this.form.value.tahun);
     });
   }
 
   printPdfCustom() {
+    console.log("downoading ");
     this.form.value.id = this.user_id;
-    console.log(this.form.value);
-
+    this.presentLoading();
     this.pdfExcelService.bukuTunaiPdf(this.form.value).subscribe((res) => {
       console.log("res", res);
 
       let url = environment.baseUrl + "storage/" + res;
-
-      if (this.platform.is("android")) {
-        this.document.viewDocument(url, "application/pdf", this.options);
-      } else {
-        console.log("not android");
-        window.open(url, "_blank");
-      }
-
-      console.log(url);
-      // window.open(url, "_blank");
-      // const browser = this.iab.create(url, "_system");
+      // window.open(url, "_blank", "location=yes");
+      // this.downloadFile(url, "report.pdf");
+      this.loadingController.dismiss();
+      this.presentModal(url, this.form.value.bulan, this.form.value.tahun);
     });
   }
 
@@ -130,41 +136,34 @@ export class BukuTunaiPage implements OnInit {
     this.form.value.bulan = bulan;
     this.form.value.tahun = this.date.getFullYear();
     console.log(this.form.value);
+    this.presentLoading();
 
     this.pdfExcelService.bukuTunaiExcel(this.form.value).subscribe((res) => {
-      console.log("res", res);
-
       let url = environment.baseUrl + "storage/" + res;
-
-      // const browser = this.iab.create(url, "_system");
-      // if (this.platform.is("android")) {
-      //   this.document.viewDocument(url, "application/pdf", this.options);
-      // } else {
-      //   console.log("not android");
-      //   window.open(url, "_blank");
-      // }
-
-      this.presentModal();
+      // window.open(url, "_system", "location=yes");
+      this.loadingController.dismiss();
+      this.presentModal(url, bulan, this.form.value.tahun);
     });
   }
 
-  printPdf(bulan) {
+  async printPdf(bulan) {
     this.form.value.id = this.user_id;
     this.form.value.bulan = bulan;
     this.form.value.tahun = this.date.getFullYear();
     console.log(this.form.value);
+    this.presentLoading();
 
-    this.pdfExcelService.bukuTunaiPdf(this.form.value).subscribe((res) => {
-      console.log("res", res);
-
-      let url = environment.baseUrl + "storage/" + res;
-      // this.document.viewDocument(url, "application/pdf", this.options);
-      this.presentModal();
-
-      console.log(url);
-      // window.open(url, "_blank");
-      // const browser = this.iab.create(url, "_system");
-    });
+    this.pdfExcelService
+      .bukuTunaiPdf(this.form.value)
+      .subscribe(async (res) => {
+        console.log("res", res);
+        let url = environment.baseUrl + "storage/" + res;
+        // this.presentModal(url);
+        // console.log("downloading... ");
+        // this.download(url);
+        this.loadingController.dismiss();
+        this.presentModal(url, bulan, this.form.value.tahun);
+      });
   }
 
   share() {
@@ -209,12 +208,35 @@ export class BukuTunaiPage implements OnInit {
     this.listYear = this.selectYearList;
   }
 
-  async presentModal() {
+  async presentModal(url: string, bulan: string, tahun: string) {
     const modal = await this.modalController.create({
       component: FileDownloadModalComponent,
-      componentProps: { value: 123 },
+      componentProps: { value: 123, url: url, bulan, tahun },
     });
 
     await modal.present();
+  }
+
+  download(url) {
+    // const url = 'http://www.example.com/file.pdf';
+    this.fileTransfer.download(url, this.file.dataDirectory + "file.pdf").then(
+      (entry) => {
+        console.log("download complete: " + entry.toURL());
+      },
+      (error) => {
+        // handle error
+
+        console.log("error", error);
+      }
+    );
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: "Loading ...",
+      duration: 2000,
+      spinner: "bubbles",
+    });
+    await loading.present();
   }
 }

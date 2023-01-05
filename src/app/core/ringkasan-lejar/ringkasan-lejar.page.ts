@@ -4,7 +4,7 @@ import { PdfExcelService } from "src/app/services/pdfExcel/pdf-excel.service";
 import { environment } from "src/environments/environment";
 import { InAppBrowser } from "@awesome-cordova-plugins/in-app-browser/ngx";
 import { Router } from "@angular/router";
-import { ModalController } from "@ionic/angular";
+import { LoadingController, ModalController } from "@ionic/angular";
 import { FileDownloadModalComponent } from "src/app/shared/file-download-modal/file-download-modal.component";
 
 @Component({
@@ -51,7 +51,8 @@ export class RingkasanLejarPage implements OnInit {
     private pdfExcelService: PdfExcelService,
     private iab: InAppBrowser,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private loadingController: LoadingController
   ) {
     this.form = this.formBuilder.group({
       id: [""],
@@ -79,22 +80,21 @@ export class RingkasanLejarPage implements OnInit {
   printExcelCustom() {
     this.form.value.id = this.user_id;
     console.log(this.form.value);
-
+    this.presentLoading();
     this.pdfExcelService.lejarExcel(this.form.value).subscribe((res) => {
       console.log("res", res);
 
       let url = environment.baseUrl + "storage/" + res;
+      this.loadingController.dismiss();
 
-      console.log(url);
-      // window.open(url, "_blank");
-      const browser = this.iab.create(url, "_system");
+      this.presentModal(url, this.form.value.bulan, this.form.value.tahun);
     });
   }
 
   printPdfCustom() {
     this.form.value.id = this.user_id;
     console.log(this.form.value);
-
+    this.presentLoading();
     this.pdfExcelService.lejarPdf(this.form.value).subscribe((res) => {
       console.log("res", res);
 
@@ -103,7 +103,9 @@ export class RingkasanLejarPage implements OnInit {
       console.log(url);
       // window.open(url, "_blank");
       // const browser = this.iab.create(url, "_system");
-      this.presentModal();
+      this.loadingController.dismiss();
+
+      this.presentModal(url, this.form.value.bulan, this.form.value.tahun);
     });
   }
 
@@ -112,15 +114,18 @@ export class RingkasanLejarPage implements OnInit {
     this.form.value.bulan = bulan;
     this.form.value.tahun = this.date.getFullYear();
     console.log(this.form.value);
-
+    this.presentLoading();
     this.pdfExcelService.lejarExcel(this.form.value).subscribe((res) => {
       console.log("res", res);
 
       let url = environment.baseUrl + "storage/" + res;
+      this.presentModal(url, bulan, this.form.value.tahun);
 
       console.log(url);
+      this.loadingController.dismiss();
+
       // window.open(url, "_blank");
-      const browser = this.iab.create(url, "_system");
+      // const browser = this.iab.create(url, "_system");
     });
   }
 
@@ -129,7 +134,7 @@ export class RingkasanLejarPage implements OnInit {
     this.form.value.bulan = bulan;
     this.form.value.tahun = this.date.getFullYear();
     console.log(this.form.value);
-
+    this.presentLoading();
     this.pdfExcelService.lejarPdf(this.form.value).subscribe((res) => {
       console.log("res", res);
 
@@ -138,7 +143,8 @@ export class RingkasanLejarPage implements OnInit {
       console.log(url);
       // window.open(url, "_blank");
       // const browser = this.iab.create(url, "_system");
-      this.presentModal();
+      this.loadingController.dismiss();
+      this.presentModal(url, bulan, this.form.value.tahun);
     });
   }
 
@@ -184,12 +190,21 @@ export class RingkasanLejarPage implements OnInit {
     this.listYear = this.selectYearList;
   }
 
-  async presentModal() {
+  async presentModal(url: string, bulan: string, tahun: string) {
     const modal = await this.modalController.create({
       component: FileDownloadModalComponent,
-      componentProps: { value: 123 },
+      componentProps: { value: 123, url: url, bulan, tahun },
     });
 
     await modal.present();
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: "Loading ...",
+      duration: 2000,
+      spinner: "bubbles",
+    });
+    await loading.present();
   }
 }
