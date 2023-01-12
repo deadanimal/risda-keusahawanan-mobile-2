@@ -85,6 +85,11 @@ export class BukuTunaiPage implements OnInit {
 
   user_id: any;
   ngOnInit() {
+    this.form.patchValue({
+      bulan: "1",
+      tahun: "2023",
+    });
+
     this.user_id = window.sessionStorage.getItem("user_id");
 
     // console.log("AAAAA", this.date.getMonth() + 1);
@@ -238,5 +243,10 @@ export class BukuTunaiPage implements OnInit {
       spinner: "bubbles",
     });
     await loading.present();
+  }
+
+  change() {
+    this.filter();
+    console.log(this.form.value);
   }
 }

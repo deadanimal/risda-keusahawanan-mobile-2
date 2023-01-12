@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { KatalogService } from "src/app/services/katalog/katalog.service";
 
-interface LocalFile {
+export interface LocalFile {
   name: string;
   path: string;
   data: string;

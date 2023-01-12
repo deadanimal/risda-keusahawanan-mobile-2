@@ -32,7 +32,7 @@
 
             <ion-item>
               <ion-label>Bulan</ion-label>
-              <ion-select formControlName="bulan">
+              <ion-select formControlName="bulan" (ionChange)="change()">
                 <ion-select-option
                   [value]="month.value"
                   *ngFor="let month of selectMonthList"
@@ -52,7 +52,7 @@
 
             <ion-item>
               <ion-label>Tahun</ion-label>
-              <ion-select formControlName="tahun">
+              <ion-select formControlName="tahun" (ionChange)="change()">
                 <ion-select-option
                   *ngFor="let year of selectYearList"
                   value="{{year}}"

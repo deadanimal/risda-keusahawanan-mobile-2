@@ -1,12 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { PnlPageRoutingModule } from './pnl-routing.module';
+import { PnlPageRoutingModule } from "./pnl-routing.module";
 
-import { PnlPage } from './pnl.page';
+import { PnlPage } from "./pnl.page";
+
+import { FileTransfer } from "@ionic-native/file-transfer/ngx";
+import { File } from "@ionic-native/file/ngx";
+import { HTTP } from "@ionic-native/http/ngx";
 
 @NgModule({
   imports: [
@@ -14,8 +18,9 @@ import { PnlPage } from './pnl.page';
     FormsModule,
     IonicModule,
     PnlPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  declarations: [PnlPage]
+  declarations: [PnlPage],
+  providers: [FileTransfer, File, HTTP],
 })
 export class PnlPageModule {}

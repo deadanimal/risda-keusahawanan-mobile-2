@@ -139,7 +139,7 @@ export class LoginPage implements OnInit {
         }
 
         console.log("login success");
-        // this.router.navigate(['/dashboard']);
+        this.router.navigate(["/dashboard"]);
 
         if (res.status_pengguna == 0) {
           this.presentAlert2();

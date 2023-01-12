@@ -25,8 +25,9 @@ export class AppComponent {
   loading = true;
 
   public appPages = [
-    { title: "Profil", url: "/profile", icon: "assets/new-iconv2/Profil.png" },
     { title: "Home", url: "/dashboard", icon: "assets/home-icon.png" },
+
+    { title: "Profil", url: "/profile", icon: "assets/new-iconv2/Profil.png" },
 
     {
       title: "Insentif",
