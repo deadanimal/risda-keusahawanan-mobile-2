@@ -32,7 +32,7 @@
 
             <ion-item>
               <ion-label>Bulan</ion-label>
-              <ion-select formControlName="bulan">
+              <ion-select (ionChange)="change()" formControlName="bulan">
                 <ion-select-option
                   [value]="month.value"
                   *ngFor="let month of selectMonthList"
@@ -52,7 +52,7 @@
 
             <ion-item>
               <ion-label>Tahun</ion-label>
-              <ion-select formControlName="tahun">
+              <ion-select (ionChange)="change()" formControlName="tahun">
                 <ion-select-option
                   *ngFor="let year of selectYearList"
                   value="{{year}}"
@@ -60,12 +60,6 @@
                 >
               </ion-select>
             </ion-item>
-            <ion-buttons slot="start">
-              <ion-button fill="outline" (click)="filter()"> Cari </ion-button>
-              <ion-button fill="outline" (click)="reset()">
-                Set Semula
-              </ion-button>
-            </ion-buttons>
           </ion-card-content>
         </ion-card>
 
@@ -95,7 +89,7 @@
             <h3 class="bold">RINGKASAN LEJAR</h3>
           </ion-text>
 
-          <h5 class="no-margin">{{listMonth.name}} {{date.getFullYear()}}</h5>
+          <h5 class="no-margin">{{listMonth.name}} {{listYear[0]}}</h5>
 
           <div
             style="

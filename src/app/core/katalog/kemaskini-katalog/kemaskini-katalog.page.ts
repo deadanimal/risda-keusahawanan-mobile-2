@@ -71,6 +71,7 @@ export class KemaskiniKatalogPage implements OnInit {
   dismiss() {
     this.modalController.dismiss({
       dismissed: true,
+      refresh: true,
     });
   }
 
@@ -111,7 +112,7 @@ export class KemaskiniKatalogPage implements OnInit {
       unit_production: this.katalog.unit_production,
 
       // status_katalog: this.katalog.status_katalog,
-      gambar_url: this.katalog.gambar_url,
+      // gambar_url: this.katalog.gambar_url,
       modified_by: this.katalog.modified_by,
     });
 
@@ -162,13 +163,35 @@ export class KemaskiniKatalogPage implements OnInit {
               message: "Loading ...",
             });
             loading.present();
-            console.log(this.form.value);
+            this.form.value.gambar_url = this.images[0];
+            let formData = this.getFormData({
+              ...this.form.value,
+              _method: "PUT",
+            });
+
+            console.log("before convert to form data" + this.form.value);
 
             this.katalogService
-              .update(this.form.value, Number(this.katalog.id), this.gambar)
+              .update(
+                {
+                  id: this.katalog.id,
+                  nama_produk: this.form.value.nama_produk,
+                  kandungan_produk: this.form.value.kandungan_produk,
+                  harga_produk: this.form.value.harga_produk,
+                  berat_produk: this.form.value.berat_produk,
+                  keterangan_produk: this.form.value.keterangan_produk,
+                  unit_production: this.form.value.unit_production,
+                  baki_stok: this.form.value.baki_stok,
+                  status_katalog: this.form.value.status_katalog,
+                  modified_by: this.form.value.modified_by,
+                  _method: "PUT",
+                  id_pengguna: Number(this.form.value.id_pengguna),
+                },
+                this.gambar
+              )
               .subscribe((res) => {
                 console.log("updated data", res);
-                loading.dismiss();
+                this.katalog = loading.dismiss();
                 this.presentAlert();
               });
           },
@@ -178,6 +201,8 @@ export class KemaskiniKatalogPage implements OnInit {
 
     await alert.present();
   }
+
+  // 0966033408
 
   async onDelete() {
     const alert = await this.alertController.create({
@@ -265,7 +290,7 @@ export class KemaskiniKatalogPage implements OnInit {
       this.updating = true;
       reader.onload = (event) => {
         // called once readAsDataURL is completed
-        // this.katalog.gambar_url = ;
+        this.katalog.gambar_url = this.images[0];
         this.url = event.target.result;
       };
 
@@ -323,5 +348,13 @@ export class KemaskiniKatalogPage implements OnInit {
       return this.url;
     }
     return this.env + this.katalog.gambar_url;
+  }
+
+  getFormData(object) {
+    const formData = new FormData();
+    Object.keys(object).forEach((key) => {
+      formData.append(key, object[key]);
+    });
+    return formData;
   }
 }

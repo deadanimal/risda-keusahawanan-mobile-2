@@ -87,7 +87,7 @@ export class BukuTunaiPage implements OnInit {
   ngOnInit() {
     this.form.patchValue({
       bulan: "1",
-      tahun: "2023",
+      tahun: String(this.date.getFullYear()),
     });
 
     this.user_id = window.sessionStorage.getItem("user_id");
@@ -95,7 +95,7 @@ export class BukuTunaiPage implements OnInit {
     // console.log("AAAAA", this.date.getMonth() + 1);
     // console.log("BBB", this.date.getFullYear());
     this.month = this.date.getMonth() + 1;
-    this.year = Number(this.date.getFullYear());
+    this.year = String(this.date.getFullYear());
     for (let i = 0; i <= 30; i++) {
       this.listYear.push(this.year);
       this.year = this.year - 1;
@@ -125,6 +125,9 @@ export class BukuTunaiPage implements OnInit {
     console.log("downoading ");
     this.form.value.id = this.user_id;
     this.presentLoading();
+    this.form.patchValue({
+      tahun: this.listYear[0],
+    });
     this.pdfExcelService.bukuTunaiPdf(this.form.value).subscribe((res) => {
       console.log("res", res);
 
@@ -139,7 +142,7 @@ export class BukuTunaiPage implements OnInit {
   printExcel(bulan) {
     this.form.value.id = this.user_id;
     this.form.value.bulan = bulan;
-    this.form.value.tahun = this.date.getFullYear();
+    this.form.value.tahun = this.listYear[0];
     console.log(this.form.value);
     this.presentLoading();
 
@@ -154,7 +157,7 @@ export class BukuTunaiPage implements OnInit {
   async printPdf(bulan) {
     this.form.value.id = this.user_id;
     this.form.value.bulan = bulan;
-    this.form.value.tahun = this.date.getFullYear();
+    this.form.value.tahun = this.listYear[0];
     console.log(this.form.value);
     this.presentLoading();
 
@@ -180,6 +183,7 @@ export class BukuTunaiPage implements OnInit {
   }
 
   filter() {
+    console.log("filtering with the data", this.form.value);
     console.log(this.filtered);
     if (this.filtered) {
       this.reset();
@@ -193,16 +197,20 @@ export class BukuTunaiPage implements OnInit {
       this.listMonth = this.listMonth.filter((item) => {
         return item.value == this.form.value.bulan;
       });
-
-      console.log("filter by bulan");
     } else if (this.form.value.tahun != "" && this.form.value.bulan == "") {
+      console.log("filter by bulan");
+
       this.listYear = this.listYear.filter((item) => {
         return item == this.form.value.tahun;
       });
-      console.log("filter by tahun");
     } else if (this.form.value.tahun != "" && this.form.value.bulan != "") {
+      console.log("filter by tahun");
+
       this.listYear = this.listYear.filter((item) => {
         return item == this.form.value.tahun;
+      });
+      this.listMonth = this.listMonth.filter((item) => {
+        return item.value == this.form.value.bulan;
       });
     }
     this.filtered = true;
@@ -246,6 +254,7 @@ export class BukuTunaiPage implements OnInit {
   }
 
   change() {
+    console.log(this.listYear);
     this.filter();
     console.log(this.form.value);
   }

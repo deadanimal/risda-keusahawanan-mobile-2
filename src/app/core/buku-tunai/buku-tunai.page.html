@@ -60,13 +60,6 @@
                 >
               </ion-select>
             </ion-item>
-
-            <ion-buttons slot="start">
-              <ion-button fill="outline" (click)="filter()"> Cari </ion-button>
-              <ion-button fill="outline" (click)="reset()">
-                Set Semula
-              </ion-button>
-            </ion-buttons>
           </ion-card-content>
         </ion-card>
 
@@ -95,7 +88,7 @@
           <ion-text color="light">
             <h3 class="bold">BUKU TUNAI</h3>
           </ion-text>
-          <h5 class="no-margin">{{listMonth.name}} {{date.getFullYear()}}</h5>
+          <h5 class="no-margin">{{listMonth.name}} {{listYear[0]}}</h5>
 
           <!-- <ion-button size="small" color="success" type="submit">PDF</ion-button> -->
           <div

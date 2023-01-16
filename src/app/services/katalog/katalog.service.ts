@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -13,8 +13,9 @@ export class KatalogService {
 
   post(data: any, file: File): Observable<any> {
     const formdata: FormData = new FormData();
-    formdata.append("data", JSON.stringify(data));
-    formdata.append("file", file);
+    for (let key in data) {
+      formdata.append(key, data[key]);
+    }
     return this.http.post<any>(`${this.url}`, formdata);
   }
 
@@ -26,14 +27,21 @@ export class KatalogService {
     return this.http.get<any>(`${this.url}` + "/" + user_id);
   }
 
-  update(aliran: any, aliran_id: number, file: File): Observable<any> {
-    const formdata: FormData = new FormData();
-    formdata.append("data", JSON.stringify(aliran));
-    formdata.append("file", file);
-    return this.http.put<any>(`${this.url}/${aliran_id}`, {
-      ...aliran,
-      file,
-    });
+  update(aliran: any, file: File): Observable<any> {
+    console.log(aliran);
+
+    const formData = new FormData();
+    for (let key in aliran) {
+      formData.append(key, aliran[key]);
+    }
+    formData.append("_method", "PUT");
+    if (file) {
+      formData.append("gambar_url", file, file.name);
+    }
+    console.log("aliran id = " + aliran.id);
+    const headers = new HttpHeaders({ enctype: "multipart/form-data" });
+
+    return this.http.post<any>(`${this.url}/${aliran.id}`, formData);
   }
 
   delete(aliran_id: number): Observable<any> {

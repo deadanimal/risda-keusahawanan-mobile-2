@@ -50,6 +50,7 @@ export class KatalogPage implements OnInit {
         cssClass: "my-custom-class",
       });
       modal.onDidDismiss().then((data: any) => {
+        console.log("dismisssssssssssssed");
         console.log("returned to the page");
         console.log(data);
 
@@ -71,6 +72,12 @@ export class KatalogPage implements OnInit {
       component: KemaskiniKatalogPage,
       componentProps: { katalog },
       cssClass: "my-custom-class",
+    });
+
+    modal.onDidDismiss().then((data: any) => {
+      if (data.data.refresh) {
+        this.getKatalog();
+      }
     });
     return await modal.present();
   }

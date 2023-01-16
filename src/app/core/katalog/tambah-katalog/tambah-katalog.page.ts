@@ -20,7 +20,7 @@ export interface LocalFile {
   styleUrls: ["./tambah-katalog.page.scss"],
 })
 export class TambahKatalogPage implements OnInit {
-  private form: FormGroup;
+  form: FormGroup;
 
   usahawan_id: any;
   user_id: any;
@@ -154,7 +154,7 @@ export class TambahKatalogPage implements OnInit {
     console.log("AAAA", this.images);
 
     this.form.patchValue({
-      gambar_url: this.images[0].data,
+      gambar_url: this.images[0],
     });
   }
 

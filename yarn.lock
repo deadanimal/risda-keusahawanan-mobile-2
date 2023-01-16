@@ -1806,6 +1806,11 @@
   dependencies:
     tslib "^2.1.0"
 
+"@capacitor/filesystem@^4.1.4":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@capacitor/filesystem/-/filesystem-4.1.4.tgz#021ef707ca199d554042ebc85151416dec07020a"
+  integrity sha512-ivko1RNK4hq63xhMacq8D6D97N5/SAafTsrmY/pghYrG6Cl2SEY0+IgRu7V9/VWeN3FSplyUPucjUTAFQxXN5g==
+
 "@capacitor/haptics@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@capacitor/haptics/-/haptics-1.1.0.tgz#6c25eb330ad5e3a4aceb9b55b3697b7054ad3787"
