@@ -6,6 +6,10 @@
     <param name="android-package" value="com.silkimen.cordovahttp.CordovaHttpPlugin"/>
   </feature>
 
+  <feature name="Badge">
+    <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge"/>
+  </feature>
+
   <feature name="SitewaertsDocumentViewer">
     <param name="android-package" value="de.sitewaerts.cordova.documentviewer.DocumentViewerPlugin"/>
   </feature>

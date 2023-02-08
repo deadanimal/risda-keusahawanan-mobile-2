@@ -10,6 +10,7 @@ android {
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
     implementation project(':capacitor-app')
+    implementation project(':capacitor-filesystem')
     implementation project(':capacitor-haptics')
     implementation project(':capacitor-keyboard')
     implementation project(':capacitor-status-bar')
@@ -18,6 +19,7 @@ dependencies {
     implementation "com.android.support:support-v4:26.+"
     implementation "com.android.support:support-v4:24.1.1+"
 }
+apply from: "../../node_modules/cordova-plugin-badge/src/android/badge.gradle"
 apply from: "../../node_modules/cordova-plugin-local-notification/src/android/build/localnotification.gradle"
 
 if (hasProperty('postBuildExtras')) {

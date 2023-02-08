@@ -20,7 +20,7 @@ import { TooltipPage } from "../tooltip/tooltip.page";
   styleUrls: ["./tambah-jana-dokumen.page.scss"],
 })
 export class TambahJanaDokumenPage implements OnInit {
-  private form1: FormGroup;
+  form1: FormGroup;
   private form2: FormGroup;
   authForm: FormGroup;
 
@@ -168,6 +168,8 @@ export class TambahJanaDokumenPage implements OnInit {
     this.negeriService.get().subscribe((res) => {
       console.log("negeri", res);
       this.negeri = res;
+
+      this.negeri = this.negeri.filter((i) => i.NEGERI.toLowerCase() != "IBU PEJABAT".toLowerCase());
     });
   }
 

@@ -6,6 +6,10 @@ import { KemaskiniDokumenPage } from '../kemaskini-dokumen/kemaskini-dokumen.pag
 import { TambahJanaDokumenPage } from '../tambah-jana-dokumen/tambah-jana-dokumen.page';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Router } from '@angular/router';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { HttpClient } from '@angular/common/http';
+import { FileDownloadModalComponent } from 'src/app/shared/file-download-modal/file-download-modal.component';
+import { File } from '@ionic-native/file/ngx';
 
 
 @Component({
@@ -19,8 +23,8 @@ export class JanaDokumenPage implements OnInit {
 
   @ViewChild('jenisDoc') docSelectRef: IonSelect;
 
-  usahawan_id : any
-  user_id : any
+  usahawan_id: any
+  user_id: any
 
   displayCountry() {
     this.docSelectRef.open();
@@ -32,6 +36,9 @@ export class JanaDokumenPage implements OnInit {
     private loadingController: LoadingController,
     private iab: InAppBrowser,
     private router: Router,
+    private transfer: FileTransfer,
+    private file: File,
+    private http: HttpClient,
 
   ) { }
 
@@ -82,6 +89,8 @@ export class JanaDokumenPage implements OnInit {
   jenisDokumen: any;
   jana_Dokumen(id_pelanggan) {
 
+    this.presentLoading()
+
     console.log(id_pelanggan);
     console.log("jenisDokumen", this.jenisDokumen);
 
@@ -98,7 +107,8 @@ export class JanaDokumenPage implements OnInit {
 
         console.log(url);
         // window.open(url, "_blank");
-        const browser = this.iab.create(url, '_system');
+        this.loadingController.dismiss();
+        this.presentModal(url);
 
 
 
@@ -111,7 +121,9 @@ export class JanaDokumenPage implements OnInit {
 
         console.log(url);
         // window.open(url, "_blank");
-        const browser = this.iab.create(url, '_system');
+        // const browser = this.iab.create(url, '_system');
+        this.loadingController.dismiss();
+        this.presentModal(url);
 
 
 
@@ -125,7 +137,10 @@ export class JanaDokumenPage implements OnInit {
 
         console.log(url);
         // window.open(url, "_blank");
-        const browser = this.iab.create(url, '_system');
+        // const browser = this.iab.create(url, '_system');
+
+        this.loadingController.dismiss();
+        this.presentModal(url);
 
 
 
@@ -139,7 +154,11 @@ export class JanaDokumenPage implements OnInit {
 
         console.log(url);
         // window.open(url, "_blank");
-        const browser = this.iab.create(url, '_system');
+        // const browser = this.iab.create(url, '_system');s
+        this.loadingController.dismiss();
+
+        this.presentModal(url);
+
 
       });
     }
@@ -148,6 +167,25 @@ export class JanaDokumenPage implements OnInit {
 
   dashboard() {
     this.router.navigate(['/dashboard'])
+  }
+
+  async presentModal(url: string) {
+    const modal = await this.modalController.create({
+      component: FileDownloadModalComponent,
+      componentProps: { value: 123, url: url },
+    });
+
+    await modal.present();
+  }
+
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: "Loading ...",
+      duration: 2000,
+      spinner: "bubbles",
+    });
+    await loading.present();
   }
 
 }

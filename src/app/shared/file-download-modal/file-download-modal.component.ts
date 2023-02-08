@@ -25,7 +25,7 @@ export class FileDownloadModalComponent implements OnInit {
     private http: HTTP,
     private localNotifications: LocalNotifications,
     private fileOpener: FileOpener
-  ) {}
+  ) { }
 
   ngOnInit() {
     console.log(this.url);
@@ -52,7 +52,7 @@ export class FileDownloadModalComponent implements OnInit {
       .then((httpResponse) => {
         console.log("File dowloaded successfully");
         this.downloadedFile = new Blob([httpResponse.data], {
-          type: this.type,
+          type: this.type || "application/pdf" || "application/vnd.ms-excel",
         });
         this.writeFile();
 

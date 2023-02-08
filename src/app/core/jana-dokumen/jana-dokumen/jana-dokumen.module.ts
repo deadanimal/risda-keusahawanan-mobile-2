@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { JanaDokumenPageRoutingModule } from './jana-dokumen-routing.module';
 
 import { JanaDokumenPage } from './jana-dokumen.page';
+import { FileTransfer } from "@ionic-native/file-transfer/ngx";
+import { File } from "@ionic-native/file/ngx";
+import { HTTP } from "@ionic-native/http/ngx";
 
 @NgModule({
   imports: [
@@ -15,6 +18,7 @@ import { JanaDokumenPage } from './jana-dokumen.page';
     IonicModule,
     JanaDokumenPageRoutingModule
   ],
-  declarations: [JanaDokumenPage]
+  declarations: [JanaDokumenPage],
+  providers: [FileTransfer, File, HTTP],
 })
-export class JanaDokumenPageModule {}
+export class JanaDokumenPageModule { }

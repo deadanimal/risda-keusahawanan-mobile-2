@@ -1,30 +1,21 @@
 Arguments: 
-  /usr/local/bin/node /home/kd/.node/corepack/yarn/1.22.15/bin/yarn.js add @awesome-cordova-plugins/file-opener/ngx
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js
 
 PATH: 
-  /home/kd/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/kd/.local/share/JetBrains/Toolbox/scripts:/usr/lib/jvm/java-1.8-openjdk-amd64/bin
+  C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Lidia G\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\aklil\AppData\Local\Microsoft\WindowsApps;C:\Users\aklil\AppData\Local\Programs\Microsoft VS Code\bin
 
 Yarn version: 
-  1.22.15
+  1.22.19
 
 Node version: 
-  16.14.0
+  16.19.0
 
 Platform: 
-  linux x64
+  win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@awesome-cordova-plugins%2ffile-opener/ngx: Request "https://registry.yarnpkg.com/@awesome-cordova-plugins%2ffile-opener/ngx" returned a 405
-      at Request.params.callback [as _callback] (/home/kd/.node/corepack/yarn/1.22.15/lib/cli.js:66149:18)
-      at Request.self.callback (/home/kd/.node/corepack/yarn/1.22.15/lib/cli.js:140885:22)
-      at Request.emit (node:events:520:28)
-      at Request.<anonymous> (/home/kd/.node/corepack/yarn/1.22.15/lib/cli.js:141857:10)
-      at Request.emit (node:events:520:28)
-      at IncomingMessage.<anonymous> (/home/kd/.node/corepack/yarn/1.22.15/lib/cli.js:141779:12)
-      at Object.onceWrapper (node:events:639:28)
-      at IncomingMessage.emit (node:events:532:35)
-      at endReadableNT (node:internal/streams/readable:1346:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)
 
 npm manifest: 
   {
@@ -53,6 +44,7 @@ npm manifest:
       "@auth0/angular-jwt": "^5.0.2",
       "@awesome-cordova-plugins/core": "^5.39.1",
       "@awesome-cordova-plugins/document-viewer": "^6.2.0",
+      "@awesome-cordova-plugins/file-opener": "^6.2.0",
       "@awesome-cordova-plugins/file-transfer": "^6.2.0",
       "@awesome-cordova-plugins/geolocation": "^5.37.3",
       "@awesome-cordova-plugins/in-app-browser": "^5.40.0",
@@ -60,7 +52,8 @@ npm manifest:
       "@awesome-cordova-plugins/native-storage": "^5.39.1",
       "@capacitor/android": "^3.4.1",
       "@capacitor/app": "1.0.3",
-      "@capacitor/core": "3.2.4",
+      "@capacitor/core": "^4.6.3",
+      "@capacitor/filesystem": "^4.1.4",
       "@capacitor/haptics": "1.1.0",
       "@capacitor/keyboard": "1.1.0",
       "@capacitor/status-bar": "1.0.3",
@@ -84,6 +77,7 @@ npm manifest:
       "ajv": "^6.12.6",
       "capacitor-resources": "^2.0.5",
       "cordova-plugin-advanced-http": "3.2.2",
+      "cordova-plugin-badge": "^0.8.8",
       "cordova-plugin-document-viewer": "^1.0.0",
       "cordova-plugin-file": "6.0.2",
       "cordova-plugin-file-opener2": "^3.0.5",
@@ -513,6 +507,13 @@ Lockfile:
     version "6.2.0"
     resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/document-viewer/-/document-viewer-6.2.0.tgz#8a77aa0a5ea9872c9ce6884fea2156eb529db22c"
     integrity sha512-VO9oZOjdYfIMd+UeStsrmAs8BbDl1ML8sO8dg6iTgRgVc36Hwtwmaebs5hZOOXye0MLHeG0hLX+T0cyE2eF0CA==
+    dependencies:
+      "@types/cordova" latest
+  
+  "@awesome-cordova-plugins/file-opener@^6.2.0":
+    version "6.2.0"
+    resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/file-opener/-/file-opener-6.2.0.tgz#9e77d796a1abe69dd8372dec79d78a0623aff103"
+    integrity sha512-CTAsCI4jo1yBiodC15UngVTvMKXKnJRXayzDEpSf14vvGtn3rVxGWJ04BHA7Z5H7UnCgjpP8rEgASKkGGI8/Tg==
     dependencies:
       "@types/cordova" latest
   
@@ -1981,12 +1982,17 @@ Lockfile:
       tslib "^2.1.0"
       xml2js "^0.4.23"
   
-  "@capacitor/core@3.2.4":
-    version "3.2.4"
-    resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.2.4.tgz#8da5774f6237ccaa770b81caff3cffbecbf7e1e8"
-    integrity sha512-TAo9u2XPN8IH3xqTjOfsUT8PYIC2vwimKIJoff/knZs19WnGATklfcWnXpxUecfm2VFMCggd80FRPgjPOS75Ag==
+  "@capacitor/core@^3.6.3":
+    version "3.9.0"
+    resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.9.0.tgz#ab5eccbeb02e140382e983b794ead296f1db7e6d"
+    integrity sha512-j1lL0+/7stY8YhIq1Lm6xixvUqIn89vtyH5ZpJNNmcZ0kwz6K9eLkcG6fvq1UWMDgSVZg9JrRGSFhb4LLoYOsw==
     dependencies:
       tslib "^2.1.0"
+  
+  "@capacitor/filesystem@^3.1.4":
+    version "4.1.5-nightly-20221212T151027.0"
+    resolved "https://registry.yarnpkg.com/@capacitor/filesystem/-/filesystem-4.1.5-nightly-20221212T151027.0.tgz#7c36b05f2e1343cc56ca3cfa4692eca5c9a94782"
+    integrity sha512-WJAJml2ELQpII0RqjwqTYNup1Hkbw+/RQ4GzshZ1d5gZatBjh4FsHWiUBtDoFlkgUo8C0DL+eV9/ovhJ2Sre5A==
   
   "@capacitor/haptics@1.1.0":
     version "1.1.0"
@@ -4928,6 +4934,11 @@ Lockfile:
     version "3.2.2"
     resolved "https://registry.yarnpkg.com/cordova-plugin-advanced-http/-/cordova-plugin-advanced-http-3.2.2.tgz#186b19d22cc556b9f9004c50c72be3fcc757c573"
     integrity sha512-9djtQuRwWMqCLTNRrtAIlGyRcs2D0AJXOzkedOQ6udlg3IVE58hhxjrFOdKz6WvoJ6w2MNVeRYafYvoWLHFuMA==
+  
+  cordova-plugin-badge@^0.8.8:
+    version "0.8.8"
+    resolved "https://registry.yarnpkg.com/cordova-plugin-badge/-/cordova-plugin-badge-0.8.8.tgz#0924018699b48f92dd3b33615452737582144c96"
+    integrity sha512-RhIBtd5xhD/iLnxjt35jvOae28oNW/wtMZBOmQR3Rf0y4wirvA1bpAZEhBoFqL+rZGhsd6ddOdQXdex1T0DRyQ==
   
   cordova-plugin-camera@^2.4.1:
     version "2.4.1"
