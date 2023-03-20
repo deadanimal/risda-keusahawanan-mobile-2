@@ -97,8 +97,14 @@
       <ion-row>
         <ion-col>
           <ion-label
-            >SUB KLUSTER PERNIAGAAN <span style="color: red">*</span></ion-label
-          >
+            >SUB KLUSTER PERNIAGAAN <span style="color: red">*</span> 
+            <ion-icon id="click-trigger" name="ios-information-circle" style="color: #000; font-size: 22px; margin-left: 20%;"></ion-icon> 
+            <ion-popover trigger="click-trigger" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Jenis Projek  Dijalankan: (Contoch: karipap Frozen, Kerepek, Ternakan Ayam)</ion-content>
+              </ng-template>
+            </ion-popover>
+          </ion-label>
           <ion-input formControlName="subkluster"></ion-input>
         </ion-col>
       </ion-row>
@@ -149,7 +155,7 @@
           >
             <ng-container *ngFor="let n of negeri">
               <ion-select-option
-                *ngIf="n.Negeri !=='IBU PEJABAT'"
+                *ngIf="n.Negeri !=='ABAT'"
                 value="{{n.U_Negeri_ID}}"
               >
                 {{n.Negeri}}</ion-select-option

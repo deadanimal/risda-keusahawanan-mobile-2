@@ -56,6 +56,7 @@
     "@types/file-saver": "^2.0.5",
     "ajv": "^6.12.6",
     "capacitor-resources": "^2.0.5",
+    "cordova-browser": "6.0.0",
     "cordova-plugin-advanced-http": "3.2.2",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-document-viewer": "^1.0.0",
@@ -111,6 +112,7 @@
     "cordova-plugin-nativegeocoder": "^3.4.1",
     "cordova-plugin-nativestorage": "^2.3.2",
     "cordova-plugin-splashscreen": "^5.0.4",
+    "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-useragent": "^1.0.6",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
@@ -141,8 +143,12 @@
       "cordova-plugin-ionic-keyboard": {},
       "im.ltdev.cordova.UserAgent": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-advanced-http": {},
-      "cordova-plugin-geolocation": {},
+      "cordova-plugin-advanced-http": {
+        "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1"
+      },
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      },
       "cordova-plugin-nativegeocoder": {
         "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service"
       },
@@ -152,7 +158,8 @@
       "cordova-plugin-whitelist": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "browser"
     ]
   }
 }
