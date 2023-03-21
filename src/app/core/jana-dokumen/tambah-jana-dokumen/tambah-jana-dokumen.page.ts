@@ -169,7 +169,6 @@ export class TambahJanaDokumenPage implements OnInit {
       console.log("negeri", res);
       this.negeri = res;
 
-      this.negeri = this.negeri.filter((i) => i.NEGERI.toLowerCase() != "IBU PEJABAT".toLowerCase());
     });
   }
 
