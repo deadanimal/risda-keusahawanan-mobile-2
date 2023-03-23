@@ -392,6 +392,7 @@ export class ProfilePerniagaanPage implements OnInit {
     this.negeriService.get().subscribe((res) => {
       console.log("negeri", res);
       this.negeri = res;
+      this.negeri = this.negeri.filter((i) => i.NEGERI.toLowerCase() != "IBU PEJABAT".toLowerCase());
     });
   }
 

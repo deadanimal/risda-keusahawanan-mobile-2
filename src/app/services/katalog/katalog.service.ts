@@ -59,7 +59,7 @@ export class KatalogService {
   }
 
   katalogPdf(id): Observable<any> {
-    return this.http.get<any>(`${this.url}` + "/katalogPdf/" + id);
+    return this.http.get<any>(`${this.url}` + "/" + id);
   }
 
   getMaklumatUsahawan(id): Observable<any> {

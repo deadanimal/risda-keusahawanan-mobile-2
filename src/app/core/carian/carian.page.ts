@@ -306,6 +306,7 @@ export class CarianPage implements OnInit {
       console.log("resnegeri", res);
 
       this.negeri = res;
+      this.negeri = this.negeri.filter((i) => i.NEGERI.toLowerCase() != "IBU PEJABAT".toLowerCase());
     });
   }
 

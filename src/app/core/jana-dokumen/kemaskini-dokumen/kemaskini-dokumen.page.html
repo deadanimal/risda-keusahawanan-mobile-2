@@ -61,9 +61,15 @@
         <ion-col class="form-control">
           <ion-label>NEGERI <span style="color: red;">*</span></ion-label>
           <!-- <ion-input type="text" formControlName="U_Negeri_ID"></ion-input> -->
+
+
+
           <ion-select formControlName="U_Negeri_ID" (ionChange)="getDaerah($event)">
-            <ion-select-option *ngFor="let negeri of negeri" value="{{negeri.U_Negeri_ID}}">{{negeri.Negeri}}
-            </ion-select-option>
+            <ng-container *ngFor="let negeri of negeri">
+              <ion-select-option *ngIf="negeri.Negeri.toLowerCase() !== 'IBU PEJABAT'.toLowerCase()"  value="{{negeri.U_Negeri_ID}}">{{negeri.Negeri}}
+              </ion-select-option>
+            </ng-container>
+           
           </ion-select>
         </ion-col>
         <ion-col class="form-control">
