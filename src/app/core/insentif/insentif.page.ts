@@ -48,8 +48,10 @@ export class InsentifPage implements OnInit {
       this.insentif = res;
 
 
-      this.insentif = this.insentif.sort((a, b) => {
-        return <any>new Date(b.created_at) - <any>new Date(a.created_at);
+      //sort insentive by created_at to have latest at top of the list
+
+     this.insentif = this.insentif.sort((a, b) => {
+        return <any>new Date(b.tahun_terima_insentif) - <any>new Date(a.tahun_terima_insentif);
       }
       );
 
