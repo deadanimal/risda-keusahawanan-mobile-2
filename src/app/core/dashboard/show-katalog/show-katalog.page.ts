@@ -4,6 +4,7 @@ import { AlertController, LoadingController, ModalController } from '@ionic/angu
 import { KatalogService } from 'src/app/services/katalog/katalog.service';
 import { environment } from 'src/environments/environment';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { FileDownloadModalComponent } from 'src/app/shared/file-download-modal/file-download-modal.component';
 
 @Component({
   selector: 'app-show-katalog',
@@ -79,21 +80,28 @@ export class ShowKatalogPage implements OnInit {
       console.log("res3", res);
 
       let url = environment.baseUrl + 'storage/' + res;
-
-
-      console.log(url);
-      // window.open(url, "_blank", 'location=yes');
-
-      // window.location.href = url
-      const browser = this.iab.create(url, '_system');
-
-      // console.log("yeayyyyy13");
-
-      // window.open(url, "_system");
-
+      console.log("url", url);
+      this.presentModal(url);
 
     });
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: "Loading ...",
+      duration: 2000,
+      spinner: "bubbles",
+    });
+    await loading.present();
+  }
+
+  async presentModal(url: string) {
+    const modal = await this.modalController.create({
+      component: FileDownloadModalComponent,
+      componentProps: { value: 123, url: url },
+    });
+
+    await modal.present();
+  }
 
 }

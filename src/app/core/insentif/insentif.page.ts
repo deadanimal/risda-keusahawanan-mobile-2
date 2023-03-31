@@ -46,6 +46,13 @@ export class InsentifPage implements OnInit {
       console.log("insentif", res);
 
       this.insentif = res;
+
+
+      this.insentif = this.insentif.sort((a, b) => {
+        return <any>new Date(b.created_at) - <any>new Date(a.created_at);
+      }
+      );
+
     });
   }
 
